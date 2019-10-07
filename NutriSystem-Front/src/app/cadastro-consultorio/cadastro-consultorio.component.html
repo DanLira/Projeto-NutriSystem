@@ -1,0 +1,94 @@
+<section>
+    <div class="container-fluid">
+        <div class="col-12">
+            <mat-card class="mat-card-padrao">
+                <div class="row">
+                    <div class="col-12">
+                        <mat-card-title>Cadastro de Consultorio
+                        </mat-card-title>
+                        <form class="row">
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>Nome Fantasia</mat-label>
+                                <input matInput placeholder="Nome Fantasia" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>Razão Social</mat-label>
+                                <input matInput placeholder="Razão Social" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>CNPJ</mat-label>
+                                <input matInput placeholder="CNPJ" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>Endereço</mat-label>
+                                <input matInput placeholder="Endereço" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>Número</mat-label>
+                                <input matInput placeholder="Número" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Bairro</mat-label>
+                                <input matInput placeholder="Bairro" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>CEP</mat-label>
+                                <input matInput placeholder="CEP" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Cidade</mat-label>
+                                <input matInput placeholder="Cidade" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-1" appearance="outline">
+                                <mat-label>UF</mat-label>
+                                <input matInput placeholder="UF" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>País</mat-label>
+                                <input matInput placeholder="País" required>
+                            </mat-form-field>
+                           
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>E-mail</mat-label>
+                                <input matInput placeholder="E-mail" required>
+                            </mat-form-field>
+                            
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Telefone</mat-label>
+                                <input matInput placeholder="Telefone">
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Celular</mat-label>
+                                <input matInput placeholder="Celular" required>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Whatsapp</mat-label>
+                                <input matInput placeholder="Whatsapp">
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Instagram</mat-label>
+                                <input matInput placeholder="Instagram">
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Facebook</mat-label>
+                                <input matInput placeholder="Facebook">
+                            </mat-form-field>
+                            
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
+                        <button mat-raised-button class="col-12" (click)="clearUsers()">Cancelar</button>
+                    </div>
+                    <div class="col-sm-12 col-md-1  mt-4">
+                        <button mat-raised-button class="col-12 mat-primary" (click)="saveUsers()">Salvar</button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-12 mt-2">
+
+        </div>
+    </div>
+</section>

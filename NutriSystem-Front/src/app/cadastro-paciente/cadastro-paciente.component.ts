@@ -82,20 +82,20 @@ export class CadastroPacienteComponent implements OnInit {
                 this.dataSource.data = pacienteSave;
                 this.formsRegister.reset();
               }));
-              this.toastr.success('paciente salvo com sucesso!', 'Salvar');
+              this.toastr.success('Paciente salvo com sucesso!', 'Salvar');
           } else {
             this.toastr.info('Este email já existe!', '');
           }
       }
     }
     getRowTablePaciente(value: any): void {
-      this.formsRegister.get('id').setValue(value.id);
-      this.formsRegister.get('nome').setValue(value.nome);
-      this.formsRegister.get('email').setValue(value.email);
-      this.formsRegister.get('sexo').setValue(value.sexo);
-      this.formsRegister.get('cpf').setValue(value.cpf);
-      this.formsRegister.get('dataNascimento').setValue(value.dataNascimento);
-      this.formsRegister.get('celular').setValue(value.celular);
+      this.formsRegister.get('id').setValue(value.Id);
+      this.formsRegister.get('nome').setValue(value.Nome);
+      this.formsRegister.get('email').setValue(value.Email);
+      this.formsRegister.get('sexo').setValue(value.Sexo);
+      this.formsRegister.get('cpf').setValue(value.Cpf);
+      this.formsRegister.get('dataNascimento').setValue(value.DataNascimento);
+      this.formsRegister.get('celular').setValue(value.Celular);
       }
   
     clearPaciente(): void {

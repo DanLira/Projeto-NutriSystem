@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 
 namespace NutriSystem.Controllers
 {
+    
     public class PacienteController : Controller
     {
         PacienteRepositorio db = new PacienteRepositorio();
@@ -28,12 +30,12 @@ namespace NutriSystem.Controllers
 
 
         [ActionName("Create")]
+        [Route("Create")]
         [HttpPost]
         public JsonResult SalvarPaciente(Paciente paciente)
         {
             try
             {
-                paciente.PacienteId = Guid.NewGuid();
 
                 db.SalvarPaciente(paciente);
                 return Json("OK");

@@ -9,7 +9,7 @@ namespace NutriSystem
     {
         public static void Register(HttpConfiguration config)
         {
-            config.EnableCors(new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*"));
+           config.EnableCors(new EnableCorsAttribute(origins:"*", headers: "*", methods: "*") { SupportsCredentials = true });
 
             config.MapHttpAttributeRoutes();
 

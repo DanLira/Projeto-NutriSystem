@@ -44,6 +44,7 @@ namespace NutriSystem.Repositorio
                                     VALUES
                                      (@Nome
                                      ,@Cpf
+                                     ,@sexo
                                      ,@DataNascimento
                                      ,@Celular
                                      ,@Email)";
@@ -64,20 +65,20 @@ namespace NutriSystem.Repositorio
                             ,
                             paciente.Sexo
                             ,
-                            paciente.DataNascimento
+                            DataNascimento = DateTime.Now
                             ,
                             paciente.Celular
                             ,
                             paciente.Email
-                            ,
-                            Data = DateTime.Now
-                            ,
-                            Hora = DateTime.Now
+                            //,
+                            //Data = DateTime.Now
+                            //,
+                            //Hora = DateTime.Now
                         }, tran);
                        
                         tran.Commit();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         tran.Rollback();
                         throw;

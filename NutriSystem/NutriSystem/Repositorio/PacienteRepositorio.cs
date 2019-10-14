@@ -2,6 +2,7 @@
 using NutriSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -87,6 +88,35 @@ namespace NutriSystem.Repositorio
                 }
             }
         }
+
+        public bool DeletePaciente(int pacienteId)
+        {
+            using (var cn = Connection)
+            {
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+                int resultado = cn.Execute(@"DELETE FROM [paciente] WHERE idPaciente = @idPaciente", new { idPaciente = pacienteId });
+                return resultado != 0;
+            }
+        }
+
+        public bool UpdatePaciente(Paciente paciente)
+        {
+            using (var cn = Connection)
+            {
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+                int resultado = cn.Execute("UPDATE [paciente] SET [nome] = @Nome ,[cpf] = @Cpf, [sexo] = @Sexo, [dataNascimento] = @DataNascimento, " +
+                    "[celular] = @Celular, [email] = @Email WHERE idPaciente = " + paciente.idPaciente); ;
+                return resultado != 0;
+            }
+        }
+
+
 
 
     }

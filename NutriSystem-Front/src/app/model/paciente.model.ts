@@ -1,6 +1,6 @@
 
 export interface Paciente {
-    id: string;
+    id: number;
     nome: string;
     sexo: string;
     cpf: string

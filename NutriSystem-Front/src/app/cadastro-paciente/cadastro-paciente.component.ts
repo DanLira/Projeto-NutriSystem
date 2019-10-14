@@ -31,7 +31,7 @@ export class CadastroPacienteComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.MatPaginator;
     this.formsRegister = this._formBuilder.group({
-    id: [null],
+    id: [''],
     nome: [''],
     cpf: [''],
     sexo: [''],
@@ -89,7 +89,7 @@ export class CadastroPacienteComponent implements OnInit {
       }
     }
     getRowTablePaciente(value: any): void {
-      this.formsRegister.get('id').setValue(value.Id);
+      this.formsRegister.get('id').setValue(value.idPaciente);
       this.formsRegister.get('nome').setValue(value.Nome);
       this.formsRegister.get('email').setValue(value.Email);
       this.formsRegister.get('sexo').setValue(value.Sexo);
@@ -104,8 +104,8 @@ export class CadastroPacienteComponent implements OnInit {
       this.formsRegister.reset();
       this.toastr.info('Campos limpos com sucesso!', 'Limpar');
     }
-  deletePaciente(id: string): void {
-    this._pacienteService.deletePaciente(id)
+  deletePaciente(idPaciente: number): void {
+    this._pacienteService.deletePaciente(idPaciente)
     .subscribe(paciente => this._pacienteService.getAllPaciente()
     .subscribe((paciente: any) => {
       this.pacienteList = (!!paciente) ? paciente : [];

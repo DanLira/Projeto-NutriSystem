@@ -36,7 +36,15 @@ export class PacienteService {
     editPaciente(paciente: Paciente): Observable<any> {
         return this._http.put(this.apiUrl + '/Paciente/Update' + paciente.id, paciente);
     }
-    deletePaciente(idPaciente: string): Observable<any> {
+    deletePaciente(idPaciente: number): Observable<any> {
+
+        $.ajax({
+            type: "POST",
+            url: this.apiUrl + '/Paciente/Delete/?id=' + idPaciente,
+            content: "application/json; charset=utf-8",
+            dataType: "json"
+        });
+        
         return this._http.delete(this.apiUrl + '/Paciente/Delete/?id=' + idPaciente);
     }
 

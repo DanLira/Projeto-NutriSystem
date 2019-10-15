@@ -19,20 +19,20 @@
                             <option value="F">Feminino</option>
                           </select>
                      </mat-form-field>
+                     <mat-form-field class="col-4" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" required pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" formControlName="email" value={{formsRegister.value.Email}} >
+                      </mat-form-field>
                     <mat-form-field class="col-4" appearance="outline">
                       <mat-label>CPF</mat-label>
-                      <input matInput placeholder="CPF" required formControlName="cpf" value={{formsRegister.value.Cpf}} >
-                    </mat-form-field>
-                    <mat-form-field class="col-4" appearance="outline">
-                      <mat-label>Email</mat-label>
-                      <input matInput placeholder="Email" required formControlName="email" value={{formsRegister.value.Email}} >
+                      <input matInput placeholder="CPF" required pattern="^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$" formControlName="cpf" value={{formsRegister.value.Cpf}} >
                     </mat-form-field>
                   <mat-form-field class="col-4" appearance="outline">
-                    <input matInput [matDatepicker]="picker" placeholder="Data de nascimento" formControlName="dataNascimento" value={{formsRegister.value.DataNascimento}}>
+                    <input matInput readonly [matDatepicker]="picker" placeholder="Data de nascimento" formControlName="dataNascimento" value={{formsRegister.value.DataNascimento}}>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
-                <mat-form-field class="col-4" appearance="outline">
+                <mat-form-field class="col-3" appearance="outline">
                   <mat-label>Celular</mat-label>
                       <input matInput placeholder="Celular" required formControlName="celular" value={{formsRegister.value.Celular}} >
               </mat-form-field>
@@ -41,16 +41,16 @@
               </div>
               <div class="row">
                   <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
-                      <button mat-raised-button class="col-12" (click)="clearPaciente()">Limpar</button>
+                      <button mat-raised-button class="btn col-12" (click)="clearPaciente()">Limpar</button>
                     </div>
                 <div class="col-sm-12 col-md-1  mt-4">
-                  <button mat-raised-button class="col-12"  (click)="savePaciente()">Salvar</button>
+                  <button mat-raised-button class="btn col-12"  (click)="savePaciente()">Salvar</button>
                 </div>
               </div>
             </mat-card>
           </div>
           <div class="col-12 mt-2">
-              <mat-card class="mat-card-padrao">
+              <mat-card >
                   <mat-card-title>Lista de Pacientes</mat-card-title> 
                   <mat-accordion>
                     <mat-expansion-panel>
@@ -69,7 +69,7 @@
                           <input matInput placeholder="CPF" formControlName="cpfFilterCtrl">
                         </mat-form-field>
                         <div class="col-xs-12 col-md-1">
-                          <button mat-raised-button  (click)="filterTabelaPaciente()" class="mt-2">Buscar</button>
+                          <button mat-raised-button  (click)="filterTabelaPaciente()" class="btn mt-2">Buscar</button>
                         </div>
                       </form>
                     </mat-expansion-panel>

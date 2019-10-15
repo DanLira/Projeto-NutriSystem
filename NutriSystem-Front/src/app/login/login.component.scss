@@ -62,7 +62,9 @@ button:hover {
   background: -webkit-linear-gradient(bottom, #009f9e, #00695C);
   opacity: 0.8;
 }
-
+.card-login{
+  margin-top: 50px;
+}
 
 .form-login {
   width: 100%;
@@ -79,9 +81,12 @@ button:hover {
   display: block;
   width: 100%;
   font-size: 39px;
-  color: #333333;
+  color: #009f9e;
   line-height: 1.2;
   text-align: left;
+}
+.form-login-login{
+  margin-top: 50px;
 }
 
 .container-form-btn {    
@@ -110,7 +115,7 @@ button:hover {
   z-index: -1;
   width: 100%;
   height: 300%;
-  background: #e8519e;
+  background: #009f9e;
   background: -webkit-linear-gradient(top, #009f9e, #00695C, #009f9e, #00695C);
   bottom: -100%;
   left: 0;

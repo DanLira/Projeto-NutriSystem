@@ -2,26 +2,37 @@
     <div class="div-image-left-side">
         <div class="img-color-purple" style="background-image: url('assets/image_header.jpg');"></div>
         <div class="right-side" style="padding-left: 20px;">
-            <form class="form-login">
-                <span class="form-login-title">NutriSystem</span>
-                <span class="font-weight-light" style="margin-top: 10px;"> NS </span>
-                <mat-form-field class="col-xs-12 col-md-6" appearance="outline">
-                    <mat-label>Login</mat-label>
-                <input matInput placeholder="Login" formControlName="loginFilterCtrl">
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <input matInput placeholder="Senha" [type]="hide ? 'text' : 'password'">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                </button>
-              </mat-form-field>
-            </form>
-            <div class="container-form-btn">
-                <div class="wrap-form-btn">
-                    <div class="form-bgbtn"></div>
-                    <button (click)="loginAzure()" class="form-btn">
-                        Entrar
+            <mat-card class="card-login">
+                <form class="form-login">
+                    <span class="form-login-title">NutriSystem</span>
+                    <span class="font-weight-light" style="margin-top: 10px;"> Sistema de acompanhamento nutricional </span>
+                    <mat-form-field class="form-login-login col-xs-12 col-md-12" appearance="outline">
+                        <mat-label>Login</mat-label>
+                    <input matInput placeholder="Login" formControlName="loginFilterCtrl">
+                  </mat-form-field>
+                  <mat-form-field class="col-xs-12 col-md-12" appearance="outline">
+                    <input matInput placeholder="Senha" [type]="hide ? 'text' : 'password'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
+                  </mat-form-field>
+                </form>
+            </mat-card>
+            <div class="container-form-btn">
+                <div class="row">
+
+                    <div class="wrap-form-btn">
+                        <div class="form-bgbtn col-xs-6"></div>
+                        <button class="form-btn">
+                            Entrar
+                        </button>
+                    </div>
+                    <div class="wrap-form-btn">
+                            <div class="form-bgbtn"></div>
+                            <button class="form-btn col-xs-6">
+                                Quero me cadastrar
+                            </button>
+                    </div>
                 </div>
             </div>
         </div>

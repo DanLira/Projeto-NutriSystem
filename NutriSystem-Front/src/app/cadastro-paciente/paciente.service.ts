@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { Paciente } from './../model/paciente.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -37,15 +38,22 @@ export class PacienteService {
         return this._http.put(this.apiUrl + '/Paciente/Update' + paciente.id, paciente);
     }
     deletePaciente(idPaciente: number): Observable<any> {
-
+        let responseDelete;
         $.ajax({
             type: "POST",
-            url: this.apiUrl + '/Paciente/Delete/?id=' + idPaciente,
+            url: this.apiUrl + '/Paciente/Delete',
             content: "application/json; charset=utf-8",
-            dataType: "json"
+            dataType: "json",
+            async: false,
+            data: {id : idPaciente},
+            success: function (response) {
+                responseDelete =  response;
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                responseDelete = textStatus;
+            }
         });
-        
-        return this._http.delete(this.apiUrl + '/Paciente/Delete/?id=' + idPaciente);
+        return responseDelete;
     }
 
 }

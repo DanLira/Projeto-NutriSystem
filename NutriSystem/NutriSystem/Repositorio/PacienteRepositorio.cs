@@ -91,6 +91,28 @@ namespace NutriSystem.Repositorio
 
         public bool DeletePaciente(int pacienteId)
         {
+            var queryPaciente = @"DELETE FROM [paciente] WHERE idPaciente = @idPaciente";
+
+            using (var cn = Connection)
+            {
+                cn.Open();
+                using (var tran = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        cn.Query(queryPaciente, new { idPaciente = pacienteId }, tran);
+
+                        tran.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        tran.Rollback();
+                        throw;
+                    }
+
+                }
+            }
+
             using (var cn = Connection)
             {
                 if (cn.State == ConnectionState.Closed)

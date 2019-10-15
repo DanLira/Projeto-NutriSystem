@@ -106,7 +106,7 @@ export class CadastroPacienteComponent implements OnInit {
     }
   deletePaciente(idPaciente: number): void {
     this._pacienteService.deletePaciente(idPaciente)
-    .subscribe(paciente => this._pacienteService.getAllPaciente()
+    .subscribe(() => this._pacienteService.getAllPaciente()
     .subscribe((paciente: any) => {
       this.pacienteList = (!!paciente) ? paciente : [];
       this.dataSource.data = this.pacienteList;

@@ -110,7 +110,7 @@ $break-exlarge: 1140px;
 
 .mat-card-padrao{
   height: auto; 
-  margin-top: 20px;
+  margin-top: -5px;
   margin-bottom: 20px;
   margin-left: 5px;
   .mat-icon{
@@ -133,8 +133,8 @@ $break-exlarge: 1140px;
     right: 6px;
     display: inline-block;
     border-top: 30px solid transparent;
-    border-left: 10px solid #4a0072;
-    border-right: 0px solid #7b1fa2;
+    border-left: 10px solid #00695C;
+    border-right: 0px solid #009f9e;
     border-bottom: 30px solid transparent;
     content: " ";
     z-index: 9;
@@ -149,7 +149,7 @@ $break-exlarge: 1140px;
   overflow: auto;
   display: block;
   margin-top: 13px;
-  border-left: #4a0072 solid 3px;
+  border-left: #00695C solid 3px;
   
   ::before{
     position: absolute;
@@ -157,8 +157,8 @@ $break-exlarge: 1140px;
     left: 6px;
     display: inline-block;
     border-top: 30px solid transparent;
-    border-left: 0px solid #4a0072;
-    border-right: 10px solid #7b1fa2;
+    border-left: 0px solid #00695C;
+    border-right: 10px solid #009f9e;
     border-bottom: 30px solid transparent;
     content: " ";
     z-index: 9;
@@ -176,6 +176,15 @@ $break-exlarge: 1140px;
 }
 table {
   width: 100%;
+}
+
+.btn{
+  color:#fff;
+  background: #009f9e;
+  background: -webkit-linear-gradient(top, #009f9e, #00695C, #009f9e, #00695C);
+}
+.btn :hover{
+  color: #fff;
 }
 
 

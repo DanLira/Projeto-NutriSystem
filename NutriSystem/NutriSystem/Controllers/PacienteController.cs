@@ -46,11 +46,19 @@ namespace NutriSystem.Controllers
             }
         }
         [ActionName("Delete")]
-        [Route("Delete/{id}")]
-        [HttpDelete]
-        public bool Delete(int id)
+        [Route("Delete")]
+        [HttpPost]
+        public JsonResult Delete(int id)
         {
-            return db.DeletePaciente(id);
+            try
+            {
+                db.DeletePaciente(id);
+                return Json("OK");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
         }
 
 

@@ -50,6 +50,7 @@ create table consultorio(
 	cep char(10) not null,
 	cidade varchar(50) not null,
 	uf char(2) not null,
+	pais varchar(50) not null,
 	celular  varchar(20) not null,
 	email varchar(100) not null,
 	telefone  varchar(20), 

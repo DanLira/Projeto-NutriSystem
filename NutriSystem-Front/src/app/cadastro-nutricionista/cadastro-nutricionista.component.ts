@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { NutricionistaService } from './nutricionista.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -23,10 +25,11 @@ export class CadastroNutricionistaComponent implements OnInit {
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
-
-
-  constructor(private readonly _formBuilder: FormBuilder,
-    private readonly _nutricionistaService: NutricionistaService, private readonly toastr: ToastrService) { }
+  router: Router;
+  constructor(http: HttpClient, router: Router , private readonly _formBuilder: FormBuilder, 
+    private readonly _nutricionistaService: NutricionistaService, private readonly toastr: ToastrService) {
+      this.router = router;
+     }
 
   ngOnInit() {
     this.dataSource.paginator = this.MatPaginator;
@@ -57,21 +60,11 @@ export class CadastroNutricionistaComponent implements OnInit {
 
     this._nutricionistaService.saveNutricionista(nutricionista)
       .subscribe(nutricionistaSave => {
-        //this.nutricionista = (!!nutricionistaSave) ? nutricionistaSave : [];
-        //this.dataSource.data = nutricionistaSave;
         this.formsRegister.reset();
       });
-    this.toastr.success('Nutriconista salvo com sucesso!', 'Salvar');
-
-
-    //if (this.nutricionistaList.filter(x => x.email === this.formsRegister.get('email').value).length <= 0) {
-
-   // } else {
-    //  this.toastr.info('Este email já existe!', '');
-   // }
-
+    this.toastr.success('Nutricionista salvo com sucesso!', 'Salvar');
+    this.router.navigate(['/', 'home']);
   }
-
   clearNutricionista(): void {
     this.dataSource.data = this.nutricionistaList;
     this.formsRegister.value.id = null;

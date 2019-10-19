@@ -12,20 +12,20 @@ export class ConsultorioService {
 
     constructor(private readonly _http: HttpClient) { }
   
-      getAllPaciente(): Observable<any> {
+      getAllConsultorio(): Observable<any> {
           return this._http.get<Consultorio[]>(this.apiUrl + '/GetAll');
       }
-      getPacienteById(idPaciente: string): Observable<any> {
-          return this._http.get(this.apiUrl + '/Paciente/?id=' + idPaciente);
+      getConsultorioById(idConsultorio: string): Observable<any> {
+          return this._http.get(this.apiUrl + '/Consultorio/?id=' + idConsultorio);
       }
-      savePaciente(paciente: Consultorio): Observable<any> {
-          return this._http.post(this.apiUrl + '/Consultorio/Create', paciente);
+      saveConsultorio(consultorio: Consultorio): Observable<any> {
+          return this._http.post(this.apiUrl + '/Consultorio/Create', consultorio);
       }
-      editPaciente(consultorio: Consultorio): Observable<any> {
+      editConsultorio(consultorio: Consultorio): Observable<any> {
           return this._http.put(this.apiUrl + '/Consultorio/Update' + consultorio.id, consultorio);
       }
-      deletePaciente(idPaciente: string): Observable<any> {
-          return this._http.delete(this.apiUrl + '/Consultorio/Delete/?id=' + idPaciente);
+      deleteConsultorio(idConsultorio: number): Observable<any> {
+          return this._http.delete(this.apiUrl + '/Consultorio/Delete/?id=' + idConsultorio);
       }
 
 }

@@ -57,8 +57,8 @@ create table consultorio(
 	instagram varchar(50),
 	facebook varchar(50), 
 	whatsapp varchar(50),
-    horarioAbertura Time,
-	horaFechamento Time
+    horaAbertura Varchar(5),
+	horaFechamento Varchar(5)
 )
 
 create table nutricionistaConsultorio(

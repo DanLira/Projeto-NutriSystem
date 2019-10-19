@@ -6,7 +6,7 @@
                     <div class="col-12">
                         <mat-card-title>Cadastro de Consultorio
                         </mat-card-title>
-                        <form class="row">
+                        <form [formGroup]="filterFormConsultorio" class="row">
                             <mat-form-field class="col-4" appearance="outline">
                                 <mat-label>Nome Fantasia</mat-label>
                                 <input matInput placeholder="Nome Fantasia" required>
@@ -47,12 +47,12 @@
                                 <mat-label>País</mat-label>
                                 <input matInput placeholder="País" required>
                             </mat-form-field>
-                           
+
                             <mat-form-field class="col-3" appearance="outline">
                                 <mat-label>E-mail</mat-label>
                                 <input matInput placeholder="E-mail" required>
                             </mat-form-field>
-                            
+
                             <mat-form-field class="col-3" appearance="outline">
                                 <mat-label>Telefone</mat-label>
                                 <input matInput placeholder="Telefone">
@@ -73,16 +73,30 @@
                                 <mat-label>Facebook</mat-label>
                                 <input matInput placeholder="Facebook">
                             </mat-form-field>
-                            
+
+                            <mat-form-field class="col-3" appearance="outline">
+                                <input matInput readonly [matDatepicker]="picker" placeholder="Horário de Abertura"
+                                    formControlName="horaAberturaFilterCtrl" value={{formsRegister.value.horaAbertura}}>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-3" appearance="outline">
+                                <input matInput readonly [matDatepicker]="pickerr" placeholder="Horário de Fechamento"
+                                    formControlName="horaFechamentoFilterCtrl"
+                                    value={{formsRegister.value.HoraFechamento}}>
+                                <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerr></mat-datepicker>
+                            </mat-form-field>
                         </form>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
-                        <button mat-raised-button class="col-12" (click)="clearUsers()">Cancelar</button>
+                        <button mat-raised-button class="col-12" (click)="clearConsultorio()">Cancelar</button>
                     </div>
                     <div class="col-sm-12 col-md-1  mt-4">
-                        <button mat-raised-button class="col-12 mat-primary" (click)="saveUsers()">Salvar</button>
+                        <button mat-raised-button class="btn col-12 mat-primary" (click)="saveConsultorio()">Salvar</button>
                     </div>
                 </div>
             </mat-card>

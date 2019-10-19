@@ -42,7 +42,7 @@ export class CadastroNutricionistaComponent implements OnInit {
     this.filterFormNutricionista = this._formBuilder.group({
       nomeFilterCtrl: [''],
       emailFilterCtrl: [''],
-      cpfFilterCtrl: ['']
+      crnFilterCtrl: ['']
     });
 
   }
@@ -55,18 +55,20 @@ export class CadastroNutricionistaComponent implements OnInit {
       crn: this.formsRegister.get('crn').value
     };
 
+    this._nutricionistaService.saveNutricionista(nutricionista)
+      .subscribe(nutricionistaSave => {
+        //this.nutricionista = (!!nutricionistaSave) ? nutricionistaSave : [];
+        //this.dataSource.data = nutricionistaSave;
+        this.formsRegister.reset();
+      });
+    this.toastr.success('Nutriconista salvo com sucesso!', 'Salvar');
 
-    if (this.nutricionistaList.filter(x => x.email === this.formsRegister.get('email').value).length <= 0) {
-      this._nutricionistaService.saveNutricionista(nutricionista)
-        .subscribe(nutricionistaSave => {
-          //this.nutricionista = (!!nutricionistaSave) ? nutricionistaSave : [];
-          //this.dataSource.data = nutricionistaSave;
-          this.formsRegister.reset();
-        });
-      this.toastr.success('Nutriconista salvo com sucesso!', 'Salvar');
-    } else {
-      this.toastr.info('Este email já existe!', '');
-    }
+
+    //if (this.nutricionistaList.filter(x => x.email === this.formsRegister.get('email').value).length <= 0) {
+
+   // } else {
+    //  this.toastr.info('Este email já existe!', '');
+   // }
 
   }
 

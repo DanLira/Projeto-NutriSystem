@@ -61,9 +61,6 @@ namespace NutriSystem.Controllers
             }
         }
 
-
-
-
     }
 
 }

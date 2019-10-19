@@ -28,13 +28,12 @@ namespace NutriSystem.Controllers
 
 
         [ActionName("Create")]
+        [Route("Create")]
         [HttpPost]
         public JsonResult SalvarNutricionista(Nutricionista nutricionista)
         {
             try
             {
-                nutricionista.NutricionistaId = Guid.NewGuid();
-
                 db.SalvarNutricionista(nutricionista);
                 return Json("OK");
             }

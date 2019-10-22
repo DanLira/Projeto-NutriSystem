@@ -61,6 +61,21 @@ namespace NutriSystem.Controllers
             }
         }
 
+        [ActionName("Update")]
+        [Route("Update")]
+        [HttpPost]
+        public JsonResult Put(Paciente paciente)
+        {
+            try
+            {
+                db.UpdatePaciente(paciente);
+                return Json("OK");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
 
 
 

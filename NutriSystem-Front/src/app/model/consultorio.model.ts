@@ -1,4 +1,4 @@
-export interface Consultorio{
+export interface Consultorio {
 
     id: number;
 

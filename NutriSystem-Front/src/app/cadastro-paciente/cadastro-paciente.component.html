@@ -21,20 +21,23 @@
                      </mat-form-field>
                      <mat-form-field class="col-4" appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email" required pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" formControlName="email" value={{formsRegister.value.Email}} >
+                        <input matInput placeholder="Email" required pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" 
+                        formControlName="email" value={{formsRegister.value.Email}} >
                       </mat-form-field>
                     <mat-form-field class="col-4" appearance="outline">
                       <mat-label>CPF</mat-label>
-                      <input matInput placeholder="CPF" required pattern="^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$" formControlName="cpf" value={{formsRegister.value.Cpf}} >
+                      <input matInput placeholder="CPF" required pattern="^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$" 
+                      formControlName="cpf" value={{formsRegister.value.Cpf}} >
                     </mat-form-field>
                   <mat-form-field class="col-4" appearance="outline">
-                    <input matInput readonly [matDatepicker]="picker" placeholder="Data de nascimento" formControlName="dataNascimento" value={{formsRegister.value.DataNascimento}}>
+                    <input matInput readonly [matDatepicker]="picker" placeholder="Data de nascimento"
+                     formControlName="dataNascimento" value={{formsRegister.value.DataNascimento}}>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker #picker></mat-datepicker>          
                   </mat-form-field>
                 <mat-form-field class="col-3" appearance="outline">
                   <mat-label>Celular</mat-label>
-                      <input matInput placeholder="Celular" required formControlName="celular" value={{formsRegister.value.Celular}} >
+                      <input matInput placeholder="Celular" required formControlName="celular" phone-ddd-mask value={{formsRegister.value.Celular}} >
               </mat-form-field>
                   </form>
                 </div>

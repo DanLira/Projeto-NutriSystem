@@ -8,10 +8,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ConsultorioService {
 
-    readonly apiUrl = 'https://localhost:44372/Consultorio'
+    readonly apiUrl = 'https://localhost:44372/Consultorio';
 
     constructor(private readonly _http: HttpClient) { }
-  
+
       getAllPaciente(): Observable<any> {
           return this._http.get<Consultorio[]>(this.apiUrl + '/GetAll');
       }

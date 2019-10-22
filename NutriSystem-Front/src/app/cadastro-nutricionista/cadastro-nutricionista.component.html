@@ -1,124 +1,80 @@
 <section>
-  <div>
-      <section>
-          <div class="container-fluid">
-              <div class="col-12">
-                  <mat-card>
-                      <div class="row">
-                          <div class="col-12">
-                              <mat-card-title>Cadastro de Nutricionista</mat-card-title>
-                          </div>
-                      </div>
-                  </mat-card>
-              </div>
-          </div>
-      </section>
-  </div>
-</section>
+    <div class="container-fluid">
+        <div class="col-12">
+            <mat-card class="mat-card-padrao">
+                <div class="row">
+                    <div class="col-12">
+                        <mat-card-title>Cadastro de Nutricionista </mat-card-title>
+                        <form [formGroup]="formsRegister" class="row">
+                            <mat-form-field class="col-5" appearance="outline">
+                                <mat-label>Nome</mat-label>
+                                <input matInput placeholder="Nome" required formControlName="nome"
+                                    value={{formsRegister.value.Nome}}>
+                            </mat-form-field>
 
-<section>
-  <div class="container-fluid">
-      <div class="col-12">
-          <mat-card>
-              <div class="row">
-                  <div class="col-12">
-                      <form class="row">
-                          <mat-form-field class="col-4" appearance="outline">
-                              <mat-label>Nome</mat-label>
-                              <input matInput placeholder="Nome" id="inputNome" required>
-                          </mat-form-field>
-                          <mat-form-field class="col-2" appearance="outline">
-                              <mat-label>Sexo</mat-label>
-                              <select matNativeControl required>
-                                  <option>Selecione</option>
-                                  <option value="Masculino" id="optMasculino">Masculino</option>
-                                  <option value="Feminino" id="optFeminino">Feminino</option>
-                              </select>
-                          </mat-form-field>
-                          <mat-form-field class="col-3" appearance="outline">
-                              <mat-label>CRN</mat-label>
-                              <input matInput placeholder="CRN" id="inputCrn" required>
-                          </mat-form-field>
-                          <mat-form-field class="col-3" appearance="outline">
-                              <mat-label>E-mail</mat-label>
-                              <input matInput placeholder="E-mail" id="inputEmail" required>
-                          </mat-form-field>
-                      </form>
-                  </div>
-              </div>
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>Sexo</mat-label>
+                                <select matNativeControl required formControlName="sexo">
+                                    <option>Selecione</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </mat-form-field>
 
-          </mat-card>
-      </div>
-  </div>
-</section>
-<section>
-  <div class="container-fluid">
-      <div class="col-12">
-          <mat-card>
-              <div class="row">
-                  <div class="col-12">
-                      <h6>Especialidades</h6>
-                  </div>
-              </div>
-          </mat-card>
-      </div>
-  </div>
-</section>
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>CRN</mat-label>
+                                <input matInput placeholder="CRN" required formControlName="crn">
+                            </mat-form-field>
 
-<section>
-  <div class="container-fluid">
-      <div class="col-12">
-          <mat-card>
-              <div class="row">
-                  <div class="col-12">
-                      <form class="row">
-                          <mat-checkbox class="col-xs-12 col-md-2" id="chkNutPediatrica">Nutrição Pediatrica
-                          </mat-checkbox>
-                          <mat-checkbox class="col-xs-12 col-md-2" id="chkNutClinica">Nutrição Clínica</mat-checkbox>
-                          <mat-checkbox class="col-xs-12 col-md-2" id="chkNutHospitalar">Nutrição Hospitalar
-                          </mat-checkbox>
-                          <mat-checkbox class="col-xs-12 col-md-2" id="chkNutAmbulatorial">Nutrição Ambulatorial
-                          </mat-checkbox>
-                          <mat-checkbox class="col-xs-12 col-md-2" id="chkNutDomiciliar">Nutrição Domiciliar
-                          </mat-checkbox>
-                          <mat-checkbox class="col-xs-12 col-md-2" id="chkNutConsultoria">Nutrição Consultoria
-                          </mat-checkbox>
-                          <mat-checkbox class="col-xs-12 col-md-2" id="chkNutEsportiva">Nutrição Esportiva</mat-checkbox>
-                          <mat-checkbox class="col-xs-12 col-md-2" id="chkNutGastronomica">Nutrição Gastronômica
-                          </mat-checkbox>
-                      </form>
-                  </div>
-              </div>
-          </mat-card>
-      </div>
-  </div>
-</section>
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Email" required
+                                    pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" formControlName="email"
+                                    value={{formsRegister.value.Email}}>
+                            </mat-form-field>
 
-<section>
-  <div class="container-fluid">
-      <div class="col-12">
-          <mat-card>
-              <div class="row">
-                  <div class="col-12">
-                      <form class="row">
-                          <mat-form-field class="col-3" appearance="outline">
-                              <mat-label>Senha</mat-label>
-                              <input matInput placeholder="Senha" id="inputSenha" required>
-                          </mat-form-field>
-                          <mat-form-field class="col-3" appearance="outline">
-                              <mat-label>Confirme a Senha</mat-label>
-                              <input matInput placeholder="Confirme a Senha" id="inputConfirmarSenha" required>
-                          </mat-form-field>
-                      </form>
-                  </div>
-                  <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
-                      <button mat-raised-button class="col-12" (click)="clearUsers()" id="btnCancelar">Cancelar</button>
-                  </div>
-                  <div class="col-sm-12 col-md-1  mt-4">
-                      <button mat-raised-button class="col-12 mat-primary" (click)="saveUsers()" id="btnSalvar">Salvar</button>
-                  </div>
-              </div>
-          </mat-card>
-      </div>
-  </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutPediatrica">Nutrição
+                                            Pediatrica
+                                        </mat-checkbox>
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutClinica">Nutrição
+                                            Clínica
+                                        </mat-checkbox>
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutHospitalar">Nutrição
+                                            Hospitalar
+                                        </mat-checkbox>
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutAmbulatorial">
+                                            Nutrição
+                                            Ambulatorial
+                                        </mat-checkbox>
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutDomiciliar">Nutrição
+                                            Domiciliar
+                                        </mat-checkbox>
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutConsultoria">Nutrição
+                                            Consultoria
+                                        </mat-checkbox>
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutEsportiva">Nutrição
+                                            Esportiva</mat-checkbox>
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutGastronomica">
+                                            Nutrição Gastronômica
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
+                        <button mat-raised-button class="btn col-12" (click)="clearNutricionista()">Limpar</button>
+                    </div>
+                    <div class="col-sm-12 col-md-1  mt-4">
+                        <button mat-raised-button class="btn col-12" (click)="saveNutricionista()">Salvar</button>
+                    </div>
+                </div>
+            </mat-card>    
+        </div>
+    </div>
 </section>

@@ -15,6 +15,9 @@ export class ConsultorioService {
       getAllPaciente(): Observable<any> {
           return this._http.get<Consultorio[]>(this.apiUrl + '/GetAll');
       }
+      getAllConsultorio(): Observable<any> {
+        return this._http.get<Consultorio[]>(this.apiUrl + '/GetAll');
+    }
       getConsultorioById(idConsultorio: string): Observable<any> {
           return this._http.get(this.apiUrl + '/Consultorio/?id=' + idConsultorio);
       }

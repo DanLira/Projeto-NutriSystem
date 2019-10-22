@@ -35,6 +35,7 @@ namespace NutriSystem.Repositorio
 
         public void SalvarPaciente(Paciente paciente)
         {
+
             var queryPaciente = @"INSERT INTO [paciente]
                                      ([nome],
 	                                  [cpf],
@@ -59,23 +60,20 @@ namespace NutriSystem.Repositorio
                     {
                         cn.Query(queryPaciente, new
                         {
-                            
+
                             paciente.Nome
                             ,
                             paciente.Cpf
                             ,
                             paciente.Sexo
                             ,
-                            DataNascimento = DateTime.Now
+                            paciente.DataNascimento
                             ,
                             paciente.Celular
                             ,
                             paciente.Email
-                            //,
-                            //Data = DateTime.Now
-                            //,
-                            //Hora = DateTime.Now
-                        }, tran);
+
+                        }, tran);; 
                        
                         tran.Commit();
                     }
@@ -132,8 +130,11 @@ namespace NutriSystem.Repositorio
                 {
                     cn.Open();
                 }
+
+
+
                 int resultado = cn.Execute("UPDATE [paciente] SET [nome] = @Nome ,[cpf] = @Cpf, [sexo] = @Sexo, [dataNascimento] = @DataNascimento, " +
-                    "[celular] = @Celular, [email] = @Email WHERE idPaciente = " + paciente.idPaciente); ;
+                    "[celular] = @Celular, [email] = @Email WHERE idPaciente = " + paciente.idPaciente, paciente); ;
                 return resultado != 0;
             }
         }

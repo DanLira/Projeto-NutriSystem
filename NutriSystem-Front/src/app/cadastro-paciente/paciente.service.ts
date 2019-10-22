@@ -1,4 +1,3 @@
-import { async } from '@angular/core/testing';
 import { Paciente } from './../model/paciente.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,46 +9,62 @@ import * as $ from 'jquery';
 })
 export class PacienteService {
 
-   readonly apiUrl = 'https://localhost:44372'
+   readonly apiUrl = 'https://localhost:44372';
 
-  constructor(private readonly _http: HttpClient) { }
+  constructor(private readonly _HTTP: HttpClient) { }
 
     getAllPaciente() {
-        return this._http.get<Paciente[]>(this.apiUrl + '/Paciente/GetAll');
+        return this._HTTP.get<Paciente[]>(this.apiUrl + '/Paciente/GetAll');
     }
     getPacienteById(idPaciente: string): Observable<any> {
-        return this._http.get(this.apiUrl + '/Paciente/?id=' + idPaciente);
+        return this._HTTP.get(this.apiUrl + '/Paciente/?id=' + idPaciente);
     }
     savePaciente(paciente: Paciente) {
         $.ajax({
-            type: "POST",
+            type: 'POST',
             url: this.apiUrl + '/Paciente/Create',
-            content: "application/json; charset=utf-8",
-            dataType: "json",
+            content: 'application/json; charset=utf-8',
+            dataType: 'json',
             data: paciente,
-            error: function (xhr, textStatus, errorThrown) {
+            error() {
             }
         });
 
 
-        return this._http.post(this.apiUrl + '/Paciente/Create', paciente);
+        return this._HTTP.post(this.apiUrl + '/Paciente/Create', paciente);
     }
     editPaciente(paciente: Paciente): Observable<any> {
-        return this._http.put(this.apiUrl + '/Paciente/Update' + paciente.id, paciente);
+       let  responseUpdate;
+       $.ajax({
+            type: 'POST',
+            url: this.apiUrl + '/Paciente/Update',
+            content: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: paciente,
+            async: false,
+            success(response) {
+                responseUpdate =  response;
+            },
+            error(textStatus) {
+                responseUpdate = textStatus;
+            }
+        });
+       return responseUpdate;
+        // return this._HTTP.put(this.apiUrl + '/Paciente/Update/?id=' + paciente.id, paciente);
     }
     deletePaciente(idPaciente: number): Observable<any> {
         let responseDelete;
         $.ajax({
-            type: "POST",
+            type: 'POST',
             url: this.apiUrl + '/Paciente/Delete',
-            content: "application/json; charset=utf-8",
-            dataType: "json",
+            content: 'application/json; charset=utf-8',
+            dataType: 'json',
             async: false,
             data: {id : idPaciente},
-            success: function (response) {
+            success(response) {
                 responseDelete =  response;
             },
-            error: function (xhr, textStatus, errorThrown) {
+            error(textStatus) {
                 responseDelete = textStatus;
             }
         });

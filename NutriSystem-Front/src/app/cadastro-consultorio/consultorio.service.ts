@@ -8,13 +8,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ConsultorioService {
 
-    readonly apiUrl = 'https://localhost:44372'
+    readonly apiUrl = 'https://localhost:44372/Consultorio'
 
     constructor(private readonly _http: HttpClient) { }
-  
-      getAllConsultorio(): Observable<any> {
+
+      getAllPaciente(): Observable<any> {
           return this._http.get<Consultorio[]>(this.apiUrl + '/GetAll');
       }
+      getAllConsultorio(): Observable<any> {
+        return this._http.get<Consultorio[]>(this.apiUrl + '/GetAll');
+    }
       getConsultorioById(idConsultorio: string): Observable<any> {
           return this._http.get(this.apiUrl + '/Consultorio/?id=' + idConsultorio);
       }

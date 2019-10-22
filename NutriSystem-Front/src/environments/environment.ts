@@ -7,7 +7,7 @@ export const environment = {
   apiEndpoint:
   {
     nutrisystem: 'https://localhost:44372'
-    
+
   },
   adal: {
     tenant: '687c39b3-36c1-41c5-b235-8fad319475a1',

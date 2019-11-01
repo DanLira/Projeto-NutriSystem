@@ -42,5 +42,40 @@ namespace NutriSystem.Controllers
                 return Json(ex.Message);
             }
         }
+
+        [ActionName("Delete")]
+        [Route("Delete")]
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            try
+            {
+                db.DeleteNutricionista(id);
+                return Json("OK");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+        [ActionName("Update")]
+        [Route("Update")]
+        [HttpPost]
+        public JsonResult Put(Nutricionista nutricionista)
+        {
+            try
+            {
+                db.UpdateNutricionista(nutricionista);
+                return Json("OK");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+
+
     }
 }

@@ -60,7 +60,7 @@ namespace NutriSystem.Repositorio
 
         public bool DeleteNutricionista(int nutricionistaId)
         {
-            var queryNutricionista = @"DELETE FROM [nutricionista] WHERE idNutricionista = @idNutricionista";
+            var queryNutricionista = @"DELETE FROM [nutricionista] WHERE idNutricionista = @NutricionistaId";
 
             using (var cn = Connection)
             {
@@ -86,6 +86,21 @@ namespace NutriSystem.Repositorio
                     cn.Open();
                 }
                 int resultado = cn.Execute(queryNutricionista, new { idNutricionista = nutricionistaId });
+                return resultado != 0;
+            }
+        }
+
+        public bool UpdateNutricionista(Nutricionista nutricionista)
+        {
+            using (var cn = Connection)
+            {
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+
+                int resultado = cn.Execute("UPDATE [nutricionista] SET [nome] = @Nome ,[crn] = @Crn, [sexo] = @Sexo, [email] = @Email, " +
+                    "WHERE idNutricionista = " + nutricionista.NutricionistaId, nutricionista); ;
                 return resultado != 0;
             }
         }

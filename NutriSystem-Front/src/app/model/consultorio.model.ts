@@ -19,6 +19,6 @@ export interface Consultorio {
     whatsapp: string;
     instagram: string;
     facebook: string;
-    horaAbertura: Time;
-    horaFechamento: Time;
+    horaAbertura: string;
+    horaFechamento: string;
 }

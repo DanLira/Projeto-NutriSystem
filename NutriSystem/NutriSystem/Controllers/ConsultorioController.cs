@@ -28,14 +28,45 @@ namespace NutriSystem.Controllers
 
 
         [ActionName("Create")]
+        [Route("Create")]
         [HttpPost]
         public JsonResult SalvarConsultorio(Consultorio consultorio)
         {
             try
             {
-                consultorio.ConsultorioId = Guid.NewGuid();
 
                 db.SalvarConsultorio(consultorio);
+                return Json("OK");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+        [ActionName("Delete")]
+        [Route("Delete")]
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            try
+            {
+                db.DeleteConsultorio(id);
+                return Json("OK");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+        [ActionName("Update")]
+        [Route("Update")]
+        [HttpPost]
+        public JsonResult Put(Consultorio consultorio)
+        {
+            try
+            {
+                db.UpdateConsultorio(consultorio);
                 return Json("OK");
             }
             catch (Exception ex)

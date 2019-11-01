@@ -30,7 +30,7 @@ export class CadastroConsultorioComponent implements OnInit {
 
   router: Router;
   constructor(http: HttpClient, router: Router, private readonly _formBuilder: FormBuilder,
-    private readonly _consultorioService: ConsultorioService, private readonly toastr: ToastrService) { }
+              private readonly _consultorioService: ConsultorioService, private readonly toastr: ToastrService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.MatPaginator;
@@ -51,7 +51,9 @@ export class CadastroConsultorioComponent implements OnInit {
       celular: [''],
       whatsapp: [''],
       instagram: [''],
-      facebook: ['']
+      facebook: [''],
+      horaAbertura: [''],
+      horaFechamento: ['']
 
     });
 
@@ -60,20 +62,7 @@ export class CadastroConsultorioComponent implements OnInit {
       razaoSocialFilterCtrl: [''],
       cnpjFilterCtrl: [''],
       enderecoFilterCtrl: [''],
-      numeroFilterCtrl: [''],
-      bairroFilterCtrl: [''],
-      cepFilterCtrl: [''],
-      cidadeFilterCtrl: [''],
-      ufFilterCtrl: [''],
-      paisFilterCtrl: [''],
-      emailFilterCtrl: [''],
-      telefoneFilterCtrl: [''],
-      celularFilterCtrl: [''],
-      whatsappFilterCtrl: [''],
-      instagramFilterCtrl: [''],
-      facebookFilterCtrl: [''],
-      horaAberturaFilterCtrl: [''],
-      horaFechamentoFilterCtrl: ['']
+      numeroFilterCtrl: ['']
     });
 
   }
@@ -97,11 +86,11 @@ export class CadastroConsultorioComponent implements OnInit {
       instagram: this.formsRegister.get('instagram').value,
       facebook: this.formsRegister.get('facebook').value,
       horaAbertura: this.formsRegister.get('horaAbertura').value,
-      horaFechamento: this.formsRegister.get('horaFechamento').value,
+      horaFechamento: this.formsRegister.get('horaFechamento').value
     };
 
     this._consultorioService.saveConsultorio(consultorio)
-      .subscribe(nutricionistaSave => {
+      .subscribe(() => {
         this.formsRegister.reset();
       });
     this.toastr.success('Consultorio salvo com sucesso!', 'Salvar');

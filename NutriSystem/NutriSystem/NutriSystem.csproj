@@ -141,6 +141,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ConsultorioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NutricionistaController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -156,6 +157,7 @@
     <Compile Include="Repositorio\ConsultaRepositorio.cs" />
     <Compile Include="Repositorio\ConsultorioRepositorio.cs" />
     <Compile Include="Repositorio\FactoryConnection.cs" />
+    <Compile Include="Repositorio\LoginRepositorio.cs" />
     <Compile Include="Repositorio\NutricionistaRepositorio.cs" />
     <Compile Include="Repositorio\PacienteRepositorio.cs" />
   </ItemGroup>

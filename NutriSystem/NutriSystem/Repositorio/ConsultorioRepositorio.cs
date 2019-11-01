@@ -2,6 +2,7 @@
 using NutriSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -41,30 +42,35 @@ namespace NutriSystem.Repositorio
                                       [bairro],
                                       [cep],
                                       [cidade],
+                                      [uf],
+                                      [pais],
                                       [celular],
 	                                  [email],
 	                                  [telefone],
 	                                  [instagram],
 	                                  [facebook],
 	                                  [whatsapp],
-	                                  [horarioFuncionamento]
-                                        )
+	                                  [horaAbertura],
+                                      [horaFechamento])
                                     VALUES
                                      (@NomeFantasia,
 	                                  @RazaoSocial,
 	                                  @Cnpj,
-	                                  @Logradouro,
+	                                  @Endereco,
                                       @Numero,
                                       @Bairro,
                                       @Cep,
                                       @Cidade,
+                                      @Uf,
+                                      @Pais,
                                       @Celular,
 	                                  @Email,
 	                                  @Telefone,
 	                                  @Instagram,
 	                                  @Facebook,
 	                                  @Whatsapp,
-	                                  @HorarioFuncionamento)";
+	                                  @HoraAbertura,
+                                      @HoraFechamento)";
 
             using (var cn = Connection)
             {
@@ -82,7 +88,7 @@ namespace NutriSystem.Repositorio
                             ,
                             consultorio.Cnpj
                             ,
-                            consultorio.Logradouro
+                            consultorio.Endereco
                             ,
                             consultorio.Numero
                             ,
@@ -92,9 +98,15 @@ namespace NutriSystem.Repositorio
                             ,
                             consultorio.Cidade
                             ,
+                            consultorio.Uf
+                            ,
+                            consultorio.Pais
+                            ,
                             consultorio.Celular
                             ,
                             consultorio.Email
+                            ,
+                            consultorio.Telefone
                             ,
                             consultorio.Instagram
                             ,
@@ -102,16 +114,14 @@ namespace NutriSystem.Repositorio
                             ,
                             consultorio.Whatsapp
                             ,
-                            consultorio.HorarioFuncionamento
+                            consultorio.HoraAbertura
                             ,
-                            Data = DateTime.Now
-                            ,
-                            Hora = DateTime.Now
+                            consultorio.HoraFechamento
                         }, tran);
 
                         tran.Commit();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         tran.Rollback();
                         throw;
@@ -120,5 +130,58 @@ namespace NutriSystem.Repositorio
                 }
             }
         }
+
+
+        public bool DeleteConsultorio(int consultorioId)
+        {
+            var queryNutricionista = @"DELETE FROM [consultorio] WHERE idConsultorio = @ConsultorioId";
+
+            using (var cn = Connection)
+            {
+                cn.Open();
+                using (var tran = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        cn.Query(queryNutricionista, new { idConsultorio = consultorioId }, tran);
+                        tran.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        tran.Rollback();
+                        throw;
+                    }
+                }
+            }
+            using (var cn = Connection)
+            {
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+                int resultado = cn.Execute(queryNutricionista, new { idConsultorio = consultorioId });
+                return resultado != 0;
+            }
+        }
+
+        public bool UpdateConsultorio(Consultorio consultorio)
+        {
+            using (var cn = Connection)
+            {
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+
+                int resultado = cn.Execute("UPDATE [consultorio] SET [nomeFantasia] = @NomeFantasia ,[cnpj] = @Cnpj, [razaoSocial] = @RazaoSocial, [pais] = @Pais, " +
+                    "[numero] = @Numero, [endereco] = @Endereco, [bairro] = @Bairro," +
+                    "[cidade] = @Cidade, [uf] = @Uf, [cep] = @Cep, [telefone] = @Telefone, [instagram] = @Instagram," +
+                    "[facebook] = @Facebook, [whatsapp] = @Whatsapp, [horaAbertura] = @HoraAbertura, [horaFechamento] = @HoraFechamento" +
+                    " WHERE idConsultorio = " + consultorio.ConsultorioId, consultorio); ;
+                return resultado != 0;
+            }
+        }
+
+
     }
 }

@@ -5,13 +5,15 @@ import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente
 import { CadastroConsultorioComponent } from './cadastro-consultorio/cadastro-consultorio.component';
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
 
     {
-        path: 'home',
-        component: AppComponent
+        path: '',
+        component: HomeComponent, canActivate: [AuthGuard]
     },
 
     {
@@ -21,17 +23,17 @@ const routes: Routes = [
 
     {
         path: 'cadastroNutricionista',
-        component: CadastroNutricionistaComponent,
+        component: CadastroNutricionistaComponent
     },
 
     {
         path: 'cadastroPaciente',
-        component: CadastroPacienteComponent,
+        component: CadastroPacienteComponent, canActivate: [AuthGuard]
     },
 
     {
         path: 'cadastroConsultorio',
-        component: CadastroConsultorioComponent
+        component: CadastroConsultorioComponent, canActivate: [AuthGuard]
     }
 
 ];

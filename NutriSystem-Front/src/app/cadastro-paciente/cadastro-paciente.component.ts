@@ -78,8 +78,8 @@ export class CadastroPacienteComponent implements OnInit {
                 this.dataSource.data = pacienteSave;
                 this.pacienteList = this.dataSource.data;
                 this.formsRegister.reset();
+                this.toastr.success('Paciente salvo com sucesso!', 'Salvar');
               }));
-            this.toastr.success('Paciente salvo com sucesso!', 'Salvar');
           } else {
             this.toastr.info('Este email já existe!', '');
           }

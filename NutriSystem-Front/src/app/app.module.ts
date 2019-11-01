@@ -28,6 +28,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { CadastroConsultorioComponent } from './cadastro-consultorio/cadastro-consultorio.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MarcarConsultaComponent } from './marcar-consulta/marcar-consulta.component';
+import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { MarcarConsultaComponent } from './marcar-consulta/marcar-consulta.compo
     LoginComponent,
     CadastroPacienteComponent,
     CadastroConsultorioComponent,
-    MarcarConsultaComponent
+    MarcarConsultaComponent,
+    HomeComponent
   ],
   imports: [
     HttpClientModule,
@@ -66,7 +69,8 @@ import { MarcarConsultaComponent } from './marcar-consulta/marcar-consulta.compo
     ToastrModule.forRoot(),
   ],
   providers: [MatDatepickerModule,
-    {provide: MAT_DATE_LOCALE, useValue: 'br-PT'}
+    {provide: MAT_DATE_LOCALE, useValue: 'br-PT'},
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

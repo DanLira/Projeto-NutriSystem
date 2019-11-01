@@ -85,7 +85,6 @@ C:\Users\d.da.silva.junior\source\repos\NutriSystem\NutriSystem\obj\Debug\NutriS
 C:\Users\d.da.silva.junior\source\repos\NutriSystem\NutriSystem\obj\Debug\NutriSystem.dll
 C:\Users\d.da.silva.junior\source\repos\NutriSystem\NutriSystem\obj\Debug\NutriSystem.pdb
 C:\Users\d.da.silva.junior\source\repos\NutriSystem\NutriSystem\obj\Debug\NutriSystem.csprojAssemblyReference.cache
-C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\NutriSystem.dll.config
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\NutriSystem.dll
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\NutriSystem.pdb
@@ -100,6 +99,7 @@ C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.Code
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.CSharp.Core.targets
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Projeto NutriSystem\Projeto\NutriSystem\NutriSystem\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll

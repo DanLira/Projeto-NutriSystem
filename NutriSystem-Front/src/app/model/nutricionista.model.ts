@@ -1,7 +1,7 @@
 
 
 export interface Nutricionista {
-    id: number;
+    idNutricionista: number;
     nome: string;
     sexo: string;
     crn: string

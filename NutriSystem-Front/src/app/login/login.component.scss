@@ -14,16 +14,6 @@ button {
     
 }
 
-button:hover {
-    cursor: pointer;
-    background: #fff;
-    color: #009f9e;
-    border: 2px solid #009f9e;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-} 
-
 .limiter {
   width: 100%;
   margin: 0 auto;
@@ -117,6 +107,15 @@ button:hover {
   position: relative;
   z-index: 1;
   overflow: hidden;
+}
+
+.wrap-form-link {
+  display: block;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 5px;
+  margin-left: 35px;
 }
 
 .form-bgbtn {

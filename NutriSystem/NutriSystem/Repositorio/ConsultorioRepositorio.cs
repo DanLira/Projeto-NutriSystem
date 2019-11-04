@@ -51,7 +51,8 @@ namespace NutriSystem.Repositorio
 	                                  [facebook],
 	                                  [whatsapp],
 	                                  [horaAbertura],
-                                      [horaFechamento])
+                                      [horaFechamento]
+                                      [idNutricionista])
                                     VALUES
                                      (@NomeFantasia,
 	                                  @RazaoSocial,
@@ -70,7 +71,8 @@ namespace NutriSystem.Repositorio
 	                                  @Facebook,
 	                                  @Whatsapp,
 	                                  @HoraAbertura,
-                                      @HoraFechamento)";
+                                      @HoraFechamento
+                                      @NutricionistaId)";
 
             using (var cn = Connection)
             {
@@ -117,6 +119,8 @@ namespace NutriSystem.Repositorio
                             consultorio.HoraAbertura
                             ,
                             consultorio.HoraFechamento
+                            ,
+                            consultorio.NutricionistaId
                         }, tran);
 
                         tran.Commit();
@@ -176,7 +180,7 @@ namespace NutriSystem.Repositorio
                 int resultado = cn.Execute("UPDATE [consultorio] SET [nomeFantasia] = @NomeFantasia ,[cnpj] = @Cnpj, [razaoSocial] = @RazaoSocial, [pais] = @Pais, " +
                     "[numero] = @Numero, [endereco] = @Endereco, [bairro] = @Bairro," +
                     "[cidade] = @Cidade, [uf] = @Uf, [cep] = @Cep, [telefone] = @Telefone, [instagram] = @Instagram," +
-                    "[facebook] = @Facebook, [whatsapp] = @Whatsapp, [horaAbertura] = @HoraAbertura, [horaFechamento] = @HoraFechamento" +
+                    "[facebook] = @Facebook, [whatsapp] = @Whatsapp, [horaAbertura] = @HoraAbertura, [horaFechamento] = @HoraFechamento, [idNutricionista] = @NutricionistaId" +
                     " WHERE idConsultorio = " + consultorio.ConsultorioId, consultorio); ;
                 return resultado != 0;
             }

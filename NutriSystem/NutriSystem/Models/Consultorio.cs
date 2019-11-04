@@ -26,5 +26,6 @@ namespace NutriSystem.Models
         public string Whatsapp { get; set; }
         public string HoraAbertura { get; set; }
         public string HoraFechamento { get; set; }
+        public int NutricionistaId { get; set; }
     }
 }

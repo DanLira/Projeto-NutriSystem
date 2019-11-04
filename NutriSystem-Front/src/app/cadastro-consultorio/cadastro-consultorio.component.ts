@@ -6,6 +6,8 @@ import { ConsultorioService } from './consultorio.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { NutricionistaService } from '../cadastro-nutricionista/nutricionista.service';
+import { Nutricionista } from '../model/nutricionista.model';
 
 
 @Component({
@@ -20,6 +22,7 @@ export class CadastroConsultorioComponent implements OnInit {
   formsRegister: FormGroup;
   filterFormConsultorio: FormGroup;
   consultorioList: Consultorio[];
+  nutricionistaList: Nutricionista[];
   displayedColumns: string[] = [
     'nomeFantasia', 'razaoSocial', 'cnpj', 'endereco', 'numero', 'bairro', 'cep', 'cidade', 'uf', 'pais', 'email',
     'telefone', 'celular', 'whatsapp', 'instagram', 'facebook', 'horaAbertura', 'horaFechamento', 'action'];
@@ -29,8 +32,10 @@ export class CadastroConsultorioComponent implements OnInit {
 
 
   router: Router;
-  constructor(http: HttpClient, router: Router, private readonly _formBuilder: FormBuilder,
-              private readonly _consultorioService: ConsultorioService, private readonly toastr: ToastrService) { }
+  constructor(private readonly _formBuilder: FormBuilder,
+     private readonly _nutricionistaService: NutricionistaService,
+              private readonly _consultorioService: ConsultorioService,
+               private readonly toastr: ToastrService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.MatPaginator;
@@ -53,9 +58,15 @@ export class CadastroConsultorioComponent implements OnInit {
       instagram: [''],
       facebook: [''],
       horaAbertura: [''],
-      horaFechamento: ['']
-
+      horaFechamento: [''],
+      idNutricionista: ['']
     });
+
+    this._nutricionistaService.getAllNutricionista()
+        .subscribe((nutricionistas: Nutricionista[]) => {
+          this.nutricionistaList = (!!nutricionistas) ? nutricionistas : [];
+          //this.dataSourcePaciente.data = [...this.pacienteList];
+      });
 
     this.filterFormConsultorio = this._formBuilder.group({
       nomeFantasiaFilterCtrl: [''],
@@ -86,7 +97,8 @@ export class CadastroConsultorioComponent implements OnInit {
       instagram: this.formsRegister.get('instagram').value,
       facebook: this.formsRegister.get('facebook').value,
       horaAbertura: this.formsRegister.get('horaAbertura').value,
-      horaFechamento: this.formsRegister.get('horaFechamento').value
+      horaFechamento: this.formsRegister.get('horaFechamento').value,
+      idNutricionista: this.formsRegister.get('idNutricionista').value
     };
 
     this._consultorioService.saveConsultorio(consultorio)

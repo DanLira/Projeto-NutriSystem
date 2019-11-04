@@ -20,4 +20,5 @@ export interface Consultorio {
     facebook: string;
     horaAbertura: string;
     horaFechamento: string;
+    idNutricionista: number;
 }

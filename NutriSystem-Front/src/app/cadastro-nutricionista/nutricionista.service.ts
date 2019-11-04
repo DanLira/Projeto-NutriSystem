@@ -35,7 +35,7 @@ export class NutricionistaService {
         return this._http.post(this.apiUrl + '/Nutricionista/Create', nutricionista);
     }
     editNutricionista(nutricionista: Nutricionista): Observable<any> {
-        return this._http.put(this.apiUrl + '/Nutricinonista/Update' + nutricionista.id, nutricionista);
+        return this._http.put(this.apiUrl + '/Nutricinonista/Update' + nutricionista.idNutricionista, nutricionista);
     }
     deleteNutricionista(idNutricinoista: number): Observable<any> {
         let responseDelete;

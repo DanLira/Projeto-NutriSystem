@@ -79,6 +79,14 @@
                                 <mat-label>Hora Fechamento</mat-label>
                                 <input matInput formControlName="horaFechamento" value={{formsRegister.value.HoraFechamento}}>
                             </mat-form-field>
+                            <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                                    <mat-select required formControlName="idNutricionista" value={{formsRegister.value.NutricionistaId}}>
+                                      <mat-option>Selecione</mat-option>
+                                      <mat-option [value]="item.NutricionistaId" *ngFor="let item of nutricionistaList">{{ item.Nome }}
+                                      </mat-option>
+                                    </mat-select>
+                                    <mat-label>Selecione o Nutricionista</mat-label>
+                                  </mat-form-field>
                         </form>
                     </div>
                 </div>

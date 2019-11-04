@@ -22,8 +22,6 @@ namespace NutriSystem.Repositorio
 
                     List<Consulta> consultas = cn.Query<Consulta>(queryConsulta).ToList();
 
-
-
                     return consultas;
                 }
             }

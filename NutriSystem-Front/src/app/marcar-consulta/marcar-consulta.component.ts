@@ -21,7 +21,7 @@ export class MarcarConsultaComponent implements OnInit {
   consultaList: Consulta[];
   dataSourcePaciente = new MatTableDataSource<Paciente>();
   //todoDataSource: any[];
-  displayedColumns: string[] = ['nome', 'dataConsulta', 'status', 'action'];
+  displayedColumns: string[] = ['dataConsulta', 'horaConsulta', 'status', 'action'];
   dataSource = new MatTableDataSource<Consulta>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -96,7 +96,7 @@ export class MarcarConsultaComponent implements OnInit {
     }
 
     getRowTableConsulta(value: any): void {
-      this.formsRegister.get('id').setValue(value.idPaciente);
+      this.formsRegister.get('id').setValue(value.consultaId);
       this.formsRegister.get('nome').setValue(value.Nome);
       this.formsRegister.get('email').setValue(value.Email);
       this.formsRegister.get('sexo').setValue(value.Sexo);
@@ -104,40 +104,48 @@ export class MarcarConsultaComponent implements OnInit {
       this.formsRegister.get('dataNascimento').setValue(value.dataNascimento);
       this.formsRegister.get('celular').setValue(value.Celular);
       }
-    
-  //   clearPaciente(): void {
-  //     this.dataSource.data = this.pacienteList;
-  //     this.formsRegister.value.id = null;
-  //     this.formsRegister.reset();
-  //     this.toastr.info('Campos limpos com sucesso!', 'Limpar');
-  //   }
-  // deletePaciente(idPaciente: number): void {
-  //   this._pacienteService.deletePaciente(idPaciente)
-  //   .subscribe(() => this._pacienteService.getAllPaciente()
-  //   .subscribe((paciente: any) => {
-  //     this.pacienteList = (!!paciente) ? paciente : [];
-  //     this.dataSource.data = this.pacienteList;
-  //   }));
-  //   this.toastr.success('Paciente deletado com sucesso!', 'Deletar');
-  // }
-  // filterTabelaPaciente(): void {
-  //   let filteredTable: Paciente[] = this.pacienteList;
-  //   if (!this.filterFormPaciente.value.nomeFilterCtrl) {
-  //     this.dataSource.data = [...this.pacienteList];
-  //   }
-  //   if (this.filterFormPaciente.value.nomeFilterCtrl) {
-  //     filteredTable = filteredTable.filter
-  //     ( x =>
-  //       x.nome.toUpperCase().includes(this.filterFormPaciente.value.nomeFilterCtrl.toUpperCase())
-  //     );
-  //    }
-  //   if (this.filterFormPaciente.value.cpfFilterCtrl) {
-  //       filteredTable = filteredTable.filter
-  //       ( x =>
-  //         x.cpf.toUpperCase().includes(this.filterFormPaciente.value.cpfFilterCtrl.toUpperCase())
-  //       );
-  //   }
-  //   this.dataSource.data = filteredTable;
-  // }
+
+    clearConsulta(): void {
+      this.dataSource.data = this.consultaList;
+      this.formsRegister.value.id = null;
+      this.formsRegister.reset();
+      this.toastr.info('Campos limpos com sucesso!', 'Limpar');
+    }
+  deleteConsulta(consultaId: number): void {
+    this._marcarConsultaService.deleteConsulta(consultaId)
+    .subscribe(() => this._marcarConsultaService.getAllConsulta()
+    .subscribe((consulta: any) => {
+      this.pacienteList = (!!consulta) ? consulta : [];
+      this.dataSource.data = this.consultaList;
+    }));
+    this.toastr.success('Consulta deletado com sucesso!', 'Deletar');
+  }
+  filterTabelaConsulta(): void {
+    let filteredTable: Consulta[] = this.consultaList;
+    if (!this.filterFormConsulta.value.dataConsultaFilterCtrl
+       && !this.filterFormConsulta.value.statusConsultaFilterCtrl && !
+       this.filterFormConsulta.value.horaConsultaFilterCtrl) {
+      this.dataSource.data = [...this.consultaList];
+    }
+    if (this.filterFormConsulta.value.nomePacienteFilterCtrl) {
+      filteredTable = filteredTable.filter
+      ( x =>
+        x.dataConsulta.toUpperCase().includes(this.filterFormConsulta.value.dataConsultaFilterCtrl.toUpperCase())
+      );
+     }
+    if (this.filterFormConsulta.value.statusConsultaFilterCtrl) {
+        filteredTable = filteredTable.filter
+        ( x =>
+          x.statusConsulta.toUpperCase().includes(this.filterFormConsulta.value.statusConsultaFilterCtrl.toUpperCase())
+        );
+    }
+    if (this.filterFormConsulta.value.horaConsultaFilterCtrl) {
+      filteredTable = filteredTable.filter
+      ( x =>
+        x.horaConsulta.toUpperCase().includes(this.filterFormConsulta.value.horaConsultaFilterCtrl.toUpperCase())
+      );
+  }
+    this.dataSource.data = filteredTable;
+  }
 
   }

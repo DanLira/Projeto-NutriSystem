@@ -7,26 +7,36 @@
               <mat-card-title>Marcar Nova Consulta
               </mat-card-title>
               <form [formGroup]="formsRegister" class="row">
-                <mat-form-field class="col-3" appearance="outline">
-                  <mat-label>Status da Consulta</mat-label>
-                      <mat-select required formControlName="statusConsulta" value={{formsRegister.value.StatusConsulta}}>
+                  <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                      <mat-select required formControlName="consultorioId" value={{formsRegister.value.ConsultorioId}}>
                         <mat-option>Selecione</mat-option>
-                       <mat-option value="Nova">Nova</mat-option>
-                        <mat-option value="Em andamento">Em andamento</mat-option>
-                        <mat-option value="Cancelada">Cancelada</mat-option>
-                        <mat-option value="Finalizada">Finalizada</mat-option>
+                        <mat-option [value]="item.Nome" *ngFor="let item of consultorioList">{{ item.Nome }}
+                        </mat-option>
                       </mat-select>
-                 </mat-form-field>
-
-                <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                  <mat-select required formControlName="pacienteId" value={{formsRegister.value.PacienteId}}>
-                    <mat-option>Selecione</mat-option>
-                    <mat-option [value]="item.Nome" *ngFor="let item of pacienteList">{{ item.Nome }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-label>Selecione o Paciente</mat-label>
-                </mat-form-field>
-
+                      <mat-label>Selecione o Consultório</mat-label>
+                    </mat-form-field>
+                    <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                        <mat-select required formControlName="nutricionistaId" value={{formsRegister.value.NutricionistaId}}>
+                          <mat-option>Selecione</mat-option>
+                          <mat-option [value]="item.Nome" *ngFor="let item of nutricionistaList">{{ item.Nome }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-label>Selecione o Nutricionista</mat-label>
+                      </mat-form-field>
+                      <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                          <mat-select required formControlName="pacienteId" value={{formsRegister.value.PacienteId}}>
+                            <mat-option>Selecione</mat-option>
+                            <mat-option [value]="item.Nome" *ngFor="let item of pacienteList">{{ item.Nome }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-label>Selecione o Paciente</mat-label>
+                        </mat-form-field>
+                      <mat-form-field class="col-4" appearance="outline">
+                          <input matInput readonly [matDatepicker]="picker" placeholder="Data da Consulta"
+                           formControlName="dataConsulta" value={{formsRegister.value.DataConsulta}}>
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>          
+                        </mat-form-field>
                 <mat-form-field class="col-3" appearance="outline">
                   <mat-label>Horário da Consulta</mat-label>
                       <mat-select required formControlName="horaConsulta" value={{formsRegister.value.HoraConsulta}}>
@@ -41,28 +51,16 @@
                         <mat-option value="16:00">16:00</mat-option>
                       </mat-select>
                  </mat-form-field>
-              <mat-form-field class="col-4" appearance="outline">
-                <input matInput readonly [matDatepicker]="picker" placeholder="Data da Consulta"
-                 formControlName="dataConsulta" value={{formsRegister.value.DataConsulta}}>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>          
-              </mat-form-field>
-              <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                <mat-select required formControlName="nutricionistaId" value={{formsRegister.value.NutricionistaId}}>
-                  <mat-option>Selecione</mat-option>
-                  <mat-option [value]="item.Nome" *ngFor="let item of nutricionistaList">{{ item.Nome }}
-                  </mat-option>
-                </mat-select>
-                <mat-label>Selecione o Nutricionista</mat-label>
-              </mat-form-field>
-              <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                <mat-select required formControlName="consultorioId" value={{formsRegister.value.ConsultorioId}}>
-                  <mat-option>Selecione</mat-option>
-                  <mat-option [value]="item.Nome" *ngFor="let item of consultorioList">{{ item.Nome }}
-                  </mat-option>
-                </mat-select>
-                <mat-label>Selecione o Consultório</mat-label>
-              </mat-form-field>
+                 <mat-form-field class="col-3" appearance="outline">
+                    <mat-label>Status da Consulta</mat-label>
+                        <mat-select required formControlName="statusConsulta" value={{formsRegister.value.StatusConsulta}}>
+                          <mat-option>Selecione</mat-option>
+                        <mat-option value="Nova">Nova</mat-option>
+                          <mat-option value="Em andamento">Em andamento</mat-option>
+                          <mat-option value="Cancelada">Cancelada</mat-option>
+                          <mat-option value="Finalizada">Finalizada</mat-option>
+                        </mat-select>
+                  </mat-form-field>
               </form>
             </div>
           </div>
@@ -88,12 +86,12 @@
                 </mat-expansion-panel-header>
                 <form [formGroup]="filterFormConsulta" class="row">
                     <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                        <mat-label>Nome do Paciente</mat-label>
-                    <input matInput placeholder="Nome" formControlName="nomePacienteFilterCtrl">
+                        <mat-label>Horário da Consulta</mat-label>
+                    <input matInput placeholder="horaConsulta" formControlName="horaConsultaFilterCtrl">
                   </mat-form-field>
                   <mat-form-field class="col-4" appearance="outline">
                     <input matInput readonly [matDatepicker]="picker2" placeholder="Data da Consulta"
-                     formControlName="dataConsultaFilterCtrl" value={{formsRegister.value.DataConsulta}}>
+                     formControlName="dataConsultaFilterCtrl">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>          
                   </mat-form-field>
@@ -109,9 +107,9 @@
             </mat-accordion>
               <div class="mat-elevation-z8 mt-2">
                 <table mat-table aria-describedby="mydesc" [dataSource]="dataSource">
-                  <ng-container matColumnDef="nome">
-                    <th mat-header-cell *matHeaderCellDef id="nome"> Nome do Paciente</th>
-                    <td mat-cell *matCellDef="let element" > {{element.Nome}} </td>
+                  <ng-container matColumnDef="horaConsulta">
+                    <th mat-header-cell *matHeaderCellDef id="horaConsulta"> Horário da Consulta</th>
+                    <td mat-cell *matCellDef="let element" > {{element.HoraConsulta}} </td>
                   </ng-container>
                   <ng-container matColumnDef="dataConsulta">
                     <th mat-header-cell *matHeaderCellDef id="dataConsulta"> Data da Consulta </th>

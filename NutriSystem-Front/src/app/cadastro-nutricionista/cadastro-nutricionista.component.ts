@@ -34,7 +34,7 @@ export class CadastroNutricionistaComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.MatPaginator;
     this.formsRegister = this._formBuilder.group({
-      id: [''],
+      idNutricionista: [''],
       nome: [''],
       crn: [''],
       sexo: [''],
@@ -51,7 +51,7 @@ export class CadastroNutricionistaComponent implements OnInit {
   }
   saveNutricionista() {
     const nutricionista: Nutricionista = {
-      id: this.formsRegister.value.id,
+      idNutricionista: this.formsRegister.value.id,
       nome: this.formsRegister.get('nome').value,
       email: this.formsRegister.get('email').value,
       sexo: this.formsRegister.get('sexo').value,

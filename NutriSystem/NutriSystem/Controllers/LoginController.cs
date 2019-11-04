@@ -13,7 +13,7 @@ namespace NutriSystem.Controllers
         LoginRepositorio db = new LoginRepositorio();
 
         [ActionName("GetAll")]
-        [HttpGet]
+        [HttpPost]
         public JsonResult GetAll()
         {
             try

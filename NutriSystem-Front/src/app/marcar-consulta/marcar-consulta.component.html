@@ -1,1 +1,152 @@
-<p>marcar-consulta works!</p>
+<section>
+    <div class="container-fluid">
+      <div class="col-12">
+        <mat-card class="mat-card-padrao">
+          <div class="row">
+            <div class="col-12">
+              <mat-card-title>Marcar Nova Consulta
+              </mat-card-title>
+              <form [formGroup]="formsRegister" class="row">
+                <mat-form-field class="col-3" appearance="outline">
+                  <mat-label>Status da Consulta</mat-label>
+                      <mat-select required formControlName="statusConsulta" value={{formsRegister.value.StatusConsulta}}>
+                        <mat-option>Selecione</mat-option>
+                       <mat-option value="Nova">Nova</mat-option>
+                        <mat-option value="Em andamento">Em andamento</mat-option>
+                        <mat-option value="Cancelada">Cancelada</mat-option>
+                        <mat-option value="Finalizada">Finalizada</mat-option>
+                      </mat-select>
+                 </mat-form-field>
+
+                <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                  <mat-select required formControlName="pacienteId" value={{formsRegister.value.PacienteId}}>
+                    <mat-option>Selecione</mat-option>
+                    <mat-option [value]="item.Nome" *ngFor="let item of pacienteList">{{ item.Nome }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-label>Selecione o Paciente</mat-label>
+                </mat-form-field>
+
+                <mat-form-field class="col-3" appearance="outline">
+                  <mat-label>Horário da Consulta</mat-label>
+                      <mat-select required formControlName="horaConsulta" value={{formsRegister.value.HoraConsulta}}>
+                        <mat-option>Selecione</mat-option>
+                       <mat-option value="07:00">07:00</mat-option>
+                        <mat-option value="08:00">08:00</mat-option>
+                        <mat-option value="09:00">09:00</mat-option>
+                        <mat-option value="10:00">10:00</mat-option>
+                        <mat-option value="11:00">11:00</mat-option>
+                        <mat-option value="14:00">14:00</mat-option>
+                        <mat-option value="15:00">15:00</mat-option>
+                        <mat-option value="16:00">16:00</mat-option>
+                      </mat-select>
+                 </mat-form-field>
+              <mat-form-field class="col-4" appearance="outline">
+                <input matInput readonly [matDatepicker]="picker" placeholder="Data da Consulta"
+                 formControlName="dataConsulta" value={{formsRegister.value.DataConsulta}}>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>          
+              </mat-form-field>
+              <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                <mat-select required formControlName="nutricionistaId" value={{formsRegister.value.NutricionistaId}}>
+                  <mat-option>Selecione</mat-option>
+                  <mat-option [value]="item.Nome" *ngFor="let item of nutricionistaList">{{ item.Nome }}
+                  </mat-option>
+                </mat-select>
+                <mat-label>Selecione o Nutricionista</mat-label>
+              </mat-form-field>
+              <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                <mat-select required formControlName="consultorioId" value={{formsRegister.value.ConsultorioId}}>
+                  <mat-option>Selecione</mat-option>
+                  <mat-option [value]="item.Nome" *ngFor="let item of consultorioList">{{ item.Nome }}
+                  </mat-option>
+                </mat-select>
+                <mat-label>Selecione o Consultório</mat-label>
+              </mat-form-field>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
+                  <button mat-raised-button class="btn col-12" (click)="clearPaciente()">Limpar</button>
+                </div>
+            <div class="col-sm-12 col-md-1  mt-4">
+              <button mat-raised-button class="btn col-12"  (click)="agendarConsulta()">Agendar Consulta</button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col-12 mt-2">
+        <mat-card >
+            <mat-card-title>Lista de Consultas</mat-card-title> 
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Filtro de Consultas
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form [formGroup]="filterFormConsulta" class="row">
+                    <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                        <mat-label>Nome do Paciente</mat-label>
+                    <input matInput placeholder="Nome" formControlName="nomePacienteFilterCtrl">
+                  </mat-form-field>
+                  <mat-form-field class="col-4" appearance="outline">
+                    <input matInput readonly [matDatepicker]="picker2" placeholder="Data da Consulta"
+                     formControlName="dataConsultaFilterCtrl" value={{formsRegister.value.DataConsulta}}>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>          
+                  </mat-form-field>
+                  <mat-form-field class="col-xs-6 col-md-4" appearance="outline">
+                    <mat-label>Status da Consulta</mat-label>
+                  <input matInput placeholder="Status da Consulta" formControlName="statusConsultaFilterCtrl">
+                </mat-form-field>
+                  <div class="col-xs-12 col-md-1">
+                    <button mat-raised-button  (click)="filterTabelaConsulta()" class="btn mt-2">Buscar</button>
+                  </div>
+                </form>
+              </mat-expansion-panel>
+            </mat-accordion>
+              <div class="mat-elevation-z8 mt-2">
+                <table mat-table aria-describedby="mydesc" [dataSource]="dataSource">
+                  <ng-container matColumnDef="nome">
+                    <th mat-header-cell *matHeaderCellDef id="nome"> Nome do Paciente</th>
+                    <td mat-cell *matCellDef="let element" > {{element.Nome}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="dataConsulta">
+                    <th mat-header-cell *matHeaderCellDef id="dataConsulta"> Data da Consulta </th>
+                    <td mat-cell *matCellDef="let element"> {{element.DataConsulta}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef id="status"> Status da Consulta </th>
+                    <td mat-cell *matCellDef="let element"> {{element.StatusConsulta}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
+                    <td mat-cell *matCellDef="let element">
+                      <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="getRowTableConsulta(element)">
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteConsulta(element.idPaciente)">
+                          <mat-icon>delete</mat-icon>
+                          <span>Deletar</span>
+                        </button>
+                      </mat-menu>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
+              </div>
+          </mat-card>
+    </div>
+    </div>
+  </section>
+  
+  

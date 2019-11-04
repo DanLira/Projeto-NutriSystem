@@ -12,6 +12,6 @@ export class UsuarioService {
   constructor(private readonly _HTTP: HttpClient) { }
 
     getAllUsuario() {
-        return this._HTTP.get<Usuario[]>(this.apiUrl + '/Usuario/GetAll');
+        return this._HTTP.get<Usuario[]>(this.apiUrl + '/Login/GetAll');
     }
 }

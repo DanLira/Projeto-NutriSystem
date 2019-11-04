@@ -9,7 +9,7 @@ namespace NutriSystem.Models
     {
         public int ConsultaId { get; set; }
         public DateTime DataConsulta { get; set; }
-        public DateTime HoraConsulta { get; set; }
+        public string HoraConsulta { get; set; }
         public string StatusConsulta { get; set; }
         public int PacienteId { get; set; }
         public int NutricionistaId { get; set; }

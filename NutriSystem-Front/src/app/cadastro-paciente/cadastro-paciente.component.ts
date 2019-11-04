@@ -42,7 +42,6 @@ export class CadastroPacienteComponent implements OnInit {
         .subscribe((pacientes: Paciente[]) => {
           this.pacienteList = (!!pacientes) ? pacientes : [];
           this.dataSource.data = [...this.pacienteList];
-          console.log(this.dataSource.data);
       });
     this.filterFormPaciente = this._formBuilder.group({
         nomeFilterCtrl: [''],

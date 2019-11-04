@@ -69,7 +69,7 @@ create table nutricionistaConsultorio(
 create table consulta(
 	idConsulta int identity(1,1) primary key not null,
 	dataConsulta date not null,
-	horaConsulta time not null,
+	horaConsulta varchar(10) not null,
 	statusConsulta varchar(20) not null,
 	idPaciente int foreign key references paciente(idPaciente) not null,
 	idNutricionista int foreign key references nutricionista(idNutricionista) not null,

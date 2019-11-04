@@ -4,9 +4,9 @@ import { CadastroNutricionistaComponent } from './cadastro-nutricionista/cadastr
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 import { CadastroConsultorioComponent } from './cadastro-consultorio/cadastro-consultorio.component';
 import { LoginComponent } from './login/login.component';
-import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { MarcarConsultaComponent } from './marcar-consulta/marcar-consulta.component';
 
 
 const routes: Routes = [
@@ -24,6 +24,10 @@ const routes: Routes = [
     {
         path: 'cadastroNutricionista',
         component: CadastroNutricionistaComponent
+    },
+    {
+        path: 'novaConsulta',
+        component: MarcarConsultaComponent, canActivate: [AuthGuard]
     },
 
     {

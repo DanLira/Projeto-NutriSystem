@@ -37,7 +37,7 @@ namespace NutriSystem.Repositorio
         {
 
             var queryUsuario = @"INSERT INTO [usuario]
-                                     ([loginUsuario],
+                                     ([login],
 	                                  [senha],)
                                     VALUES
                                      (@Login

@@ -45,9 +45,9 @@ namespace NutriSystem.Repositorio
                                      (@DataConsulta
                                      ,@HoraConsulta
                                      ,@StatusConsulta
-                                     ,@PacienteId
-                                     ,@NutricionistaId
-                                     ,@ConsultorioId)";
+                                     ,@idPaciente
+                                     ,@idNutricionista
+                                     ,@idConsultorio)";
 
             using (var cn = Connection)
             {

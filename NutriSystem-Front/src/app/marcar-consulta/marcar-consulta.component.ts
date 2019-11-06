@@ -1,3 +1,4 @@
+import { NutricionistaService } from './../cadastro-nutricionista/nutricionista.service';
 import { Nutricionista } from './../model/nutricionista.model';
 import { Paciente } from './../model/paciente.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -27,6 +28,7 @@ export class MarcarConsultaComponent implements OnInit {
   consultorioList: Consultorio[];
   dataSourcePaciente = new MatTableDataSource<Paciente>();
   dataSourceConsultorio = new MatTableDataSource<Consultorio>();
+  dataSourceNutricionista = new MatTableDataSource<Nutricionista>();
   displayedColumns: string[] = ['dataConsulta', 'horaConsulta', 'status', 'action'];
   dataSource = new MatTableDataSource<Consulta>();
   todoDataSource: any[];
@@ -34,6 +36,7 @@ export class MarcarConsultaComponent implements OnInit {
 
   constructor(private readonly _formBuilder: FormBuilder,
               private readonly _marcarConsultaService: MarcarConsultaService,
+              private readonly _nutricionistaService: NutricionistaService,
               private readonly _pacienteService: PacienteService,
               private readonly _consultorioService: ConsultorioService,
               private readonly toastr: ToastrService) { }
@@ -41,15 +44,21 @@ export class MarcarConsultaComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.MatPaginator;
     this.formsRegister = this._formBuilder.group({
-      consultaId: [''],
+      idConsulta: [''],
       dataConsulta: [''],
       horaConsulta: [''],
       statusConsulta: [''],
-      pacienteId: [''],
+      idPaciente: [''],
       idNutricionista: [''],
       idConsultorio: ['']
 
     });
+
+    this._nutricionistaService.getAllNutricionista()
+        .subscribe((nutricionistas: Nutricionista[]) => {
+          this.nutricionistaList = (!!nutricionistas) ? nutricionistas : [];
+          this.dataSourceNutricionista.data = [...this.nutricionistaList];
+      });
 
     this._pacienteService.getAllPaciente()
         .subscribe((pacientes: Paciente[]) => {
@@ -69,15 +78,16 @@ export class MarcarConsultaComponent implements OnInit {
         });
     }
 
-    getNutricionistas() {
-      this.nutricionistaList = [];
-      this._marcarConsultaService.getNutricionistas().subscribe((res: any[]) => {
-        this.nutricionistaList = res;
-      });
-    }
+    // getNutricionistas() {
+    //   debugger;
+    //   this.nutricionistaList = [];
+    //   this._marcarConsultaService.getNutricionistas().subscribe((res: any[]) => {
+    //     this.nutricionistaList = res;
+    //   });
 
 
     agendarConsulta() {
+      debugger;
       const consulta: Consulta = {
         idConsulta: this.formsRegister.value.id,
         idPaciente: this.formsRegister.get('idPaciente').value,
@@ -98,9 +108,6 @@ export class MarcarConsultaComponent implements OnInit {
             }));
           this.toastr.success('Consulta editado com sucesso!', 'Editar');
       } else {
-          if (this.consultaList.filter(x =>
-             x.horaConsulta === this.formsRegister.get('horaConsulta').value
-              && x.statusConsulta === this.formsRegister.get('statusConsulta').value)) {
             this._marcarConsultaService.agendarConsulta(consulta)
               .subscribe(() => this._marcarConsultaService.getAllConsulta().subscribe(consultaSave => {
                 this.consulta = (!!consultaSave) ? consultaSave : [];
@@ -109,21 +116,26 @@ export class MarcarConsultaComponent implements OnInit {
                 this.formsRegister.reset();
                 this.toastr.success('Consulta marcada com sucesso!', 'Salvar');
               }));
-          } else {
-            this.toastr.info('Horário não disponivel!', '');
-          }
       }
     }
 
-    getRowTableConsulta(value: any): void {
-      this.formsRegister.get('id').setValue(value.consultaId);
-      this.formsRegister.get('nome').setValue(value.Nome);
-      this.formsRegister.get('email').setValue(value.Email);
-      this.formsRegister.get('sexo').setValue(value.Sexo);
-      this.formsRegister.get('cpf').setValue(value.Cpf);
-      this.formsRegister.get('dataNascimento').setValue(value.dataNascimento);
-      this.formsRegister.get('celular').setValue(value.Celular);
-      }
+    // getRowTableConsulta(value: any): void {
+    //   this.formsRegister.get('id').setValue(value.consultaId);
+    //   this.formsRegister.get('nome').setValue(value.Nome);
+    //   this.formsRegister.get('email').setValue(value.Email);
+    //   this.formsRegister.get('sexo').setValue(value.Sexo);
+    //   this.formsRegister.get('cpf').setValue(value.Cpf);
+    //   this.formsRegister.get('dataNascimento').setValue(value.dataNascimento);
+    //   this.formsRegister.get('celular').setValue(value.Celular);
+
+    //   this.formsRegister.value.id,
+    //     this.formsRegister.get('idPaciente').value,
+    //     idNutricionista: this.formsRegister.get('idNutricionista').value,
+    //     statusConsulta: this.formsRegister.get('statusConsulta').value,
+    //     horaConsulta: this.formsRegister.get('horaConsulta').value,
+    //     idConsultorio: this.formsRegister.get('idConsultorio').value,
+    //     dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR')
+    //   }
 
     clearConsulta(): void {
       this.dataSource.data = this.consultaList;

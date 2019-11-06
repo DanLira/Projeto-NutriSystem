@@ -15,6 +15,7 @@ export class MarcarConsultaService {
     getAllConsulta() {
         return this._HTTP.get<Consulta[]>(this.apiUrl + '/Consulta/GetAll');
     }
+
     agendarConsulta(consulta: Consulta) {
         $.ajax({
             type: 'POST',
@@ -65,5 +66,9 @@ export class MarcarConsultaService {
             }
         });
         return responseDelete;
+    }
+
+    getNutricionistas(): Observable<any> {
+        return this._HTTP.get<Consulta[]>(this.apiUrl + '/Consulta/GetNutricionistas');
     }
 }

@@ -1,3 +1,4 @@
+import { Nutricionista } from './../model/nutricionista.model';
 import { Paciente } from './../model/paciente.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -6,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { MarcarConsultaService } from './marcar-consulta.service';
 import { PacienteService } from '../cadastro-paciente/paciente.service';
 import { Consulta } from '../model/consulta.model';
+import { ConsultorioService } from '../cadastro-consultorio/consultorio.service';
+import { Consultorio } from '../model/consultorio.model';
 
 @Component({
   selector: 'app-marcar-consulta',
@@ -19,8 +22,11 @@ export class MarcarConsultaComponent implements OnInit {
   filterFormConsulta: FormGroup;
   pacienteList: Paciente[];
   consultaList: Consulta[];
+  nutricionistaList: Nutricionista[];
+  idConsultorio: number;
+  consultorioList: Consultorio[];
   dataSourcePaciente = new MatTableDataSource<Paciente>();
-  //todoDataSource: any[];
+  dataSourceConsultorio = new MatTableDataSource<Consultorio>();
   displayedColumns: string[] = ['dataConsulta', 'horaConsulta', 'status', 'action'];
   dataSource = new MatTableDataSource<Consulta>();
   todoDataSource: any[];
@@ -29,6 +35,7 @@ export class MarcarConsultaComponent implements OnInit {
   constructor(private readonly _formBuilder: FormBuilder,
               private readonly _marcarConsultaService: MarcarConsultaService,
               private readonly _pacienteService: PacienteService,
+              private readonly _consultorioService: ConsultorioService,
               private readonly toastr: ToastrService) { }
 
   ngOnInit() {
@@ -39,8 +46,8 @@ export class MarcarConsultaComponent implements OnInit {
       horaConsulta: [''],
       statusConsulta: [''],
       pacienteId: [''],
-      nutricionistaId: [''],
-      consultorioId: ['']
+      idNutricionista: [''],
+      idConsultorio: ['']
 
     });
 
@@ -50,6 +57,11 @@ export class MarcarConsultaComponent implements OnInit {
           this.dataSourcePaciente.data = [...this.pacienteList];
       });
 
+    this._consultorioService.getAllConsultorio()
+      .subscribe((consultorios: Consultorio[]) => {
+        this.consultorioList = (!!consultorios) ? consultorios : [];
+       });
+
     this.filterFormConsulta = this._formBuilder.group({
         nomePacienteFilterCtrl: [''],
         dataConsultaFilterCtrl: [''],
@@ -57,14 +69,22 @@ export class MarcarConsultaComponent implements OnInit {
         });
     }
 
+    getNutricionistas() {
+      this.nutricionistaList = [];
+      this._marcarConsultaService.getNutricionistas().subscribe((res: any[]) => {
+        this.nutricionistaList = res;
+      });
+    }
+
+
     agendarConsulta() {
       const consulta: Consulta = {
-        consultaId: this.formsRegister.value.id,
-        pacienteId: this.formsRegister.get('pacienteId').value,
-        nutricionistaId: this.formsRegister.get('nutricionistaId').value,
+        idConsulta: this.formsRegister.value.id,
+        idPaciente: this.formsRegister.get('idPaciente').value,
+        idNutricionista: this.formsRegister.get('idNutricionista').value,
         statusConsulta: this.formsRegister.get('statusConsulta').value,
         horaConsulta: this.formsRegister.get('horaConsulta').value,
-        consultorioId: this.formsRegister.get('consultorioId').value,
+        idConsultorio: this.formsRegister.get('idConsultorio').value,
         dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR')
       };
       if (!!this.formsRegister.value.id) {

@@ -74,5 +74,20 @@ namespace NutriSystem.Controllers
                 return Json(ex.Message);
             }
         }
+
+
+        [ActionName("GetNutricionistas")]
+        [HttpGet]
+        public JsonResult Get()
+        {
+            try
+            {
+                return Json(db.ListarNutricionistas(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

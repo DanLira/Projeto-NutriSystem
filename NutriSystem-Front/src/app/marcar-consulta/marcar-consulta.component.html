@@ -8,17 +8,17 @@
               </mat-card-title>
               <form [formGroup]="formsRegister" class="row">
                   <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                      <mat-select required formControlName="consultorioId" value={{formsRegister.value.ConsultorioId}}>
+                      <mat-select required formControlName="idConsultorio" value={{formsRegister.value.idConsultorio}} (change)="getNutricionistas()">
                         <mat-option>Selecione</mat-option>
-                        <mat-option [value]="item.Nome" *ngFor="let item of consultorioList">{{ item.Nome }}
+                        <mat-option [value]="item.idConsultorio" *ngFor="let item of consultorioList">{{ item.NomeFantasia }}
                         </mat-option>
                       </mat-select>
                       <mat-label>Selecione o Consultório</mat-label>
                     </mat-form-field>
                     <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                        <mat-select required formControlName="nutricionistaId" value={{formsRegister.value.NutricionistaId}}>
+                        <mat-select required formControlName="idNutricionista" value={{formsRegister.value.idNutricionista}}>
                           <mat-option>Selecione</mat-option>
-                          <mat-option [value]="item.Nome" *ngFor="let item of nutricionistaList">{{ item.Nome }}
+                          <mat-option [value]="item.idNutricionista" *ngFor="let item of nutricionistaList">{{ item.Nome }}
                           </mat-option>
                         </mat-select>
                         <mat-label>Selecione o Nutricionista</mat-label>

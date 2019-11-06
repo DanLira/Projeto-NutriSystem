@@ -51,7 +51,7 @@ namespace NutriSystem.Repositorio
 	                                  [facebook],
 	                                  [whatsapp],
 	                                  [horaAbertura],
-                                      [horaFechamento]
+                                      [horaFechamento],
                                       [idNutricionista])
                                     VALUES
                                      (@NomeFantasia,
@@ -71,8 +71,8 @@ namespace NutriSystem.Repositorio
 	                                  @Facebook,
 	                                  @Whatsapp,
 	                                  @HoraAbertura,
-                                      @HoraFechamento
-                                      @NutricionistaId)";
+                                      @HoraFechamento,
+                                      @idNutricionista)";
 
             using (var cn = Connection)
             {
@@ -120,8 +120,9 @@ namespace NutriSystem.Repositorio
                             ,
                             consultorio.HoraFechamento
                             ,
-                            consultorio.NutricionistaId
-                        }, tran);
+                            consultorio.idNutricionista
+
+                        }, tran) ;
 
                         tran.Commit();
                     }
@@ -138,7 +139,7 @@ namespace NutriSystem.Repositorio
 
         public bool DeleteConsultorio(int consultorioId)
         {
-            var queryNutricionista = @"DELETE FROM [consultorio] WHERE idConsultorio = @ConsultorioId";
+            var queryNutricionista = @"DELETE FROM [consultorio] WHERE idConsultorio = @idConsultorio";
 
             using (var cn = Connection)
             {
@@ -181,7 +182,7 @@ namespace NutriSystem.Repositorio
                     "[numero] = @Numero, [endereco] = @Endereco, [bairro] = @Bairro," +
                     "[cidade] = @Cidade, [uf] = @Uf, [cep] = @Cep, [telefone] = @Telefone, [instagram] = @Instagram," +
                     "[facebook] = @Facebook, [whatsapp] = @Whatsapp, [horaAbertura] = @HoraAbertura, [horaFechamento] = @HoraFechamento, [idNutricionista] = @NutricionistaId" +
-                    " WHERE idConsultorio = " + consultorio.ConsultorioId, consultorio); ;
+                    " WHERE idConsultorio = " + consultorio.idConsultorio, consultorio); ;
                 return resultado != 0;
             }
         }

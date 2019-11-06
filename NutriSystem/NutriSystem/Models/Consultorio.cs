@@ -7,7 +7,7 @@ namespace NutriSystem.Models
 {
     public class Consultorio
     {
-        public int ConsultorioId { get; set; }
+        public int idConsultorio { get; set; }
         public string NomeFantasia { get; set; }
         public string Cnpj { get; set; }
         public string RazaoSocial { get; set; }
@@ -26,6 +26,6 @@ namespace NutriSystem.Models
         public string Whatsapp { get; set; }
         public string HoraAbertura { get; set; }
         public string HoraFechamento { get; set; }
-        public int NutricionistaId { get; set; }
+        public int idNutricionista { get; set; }
     }
 }

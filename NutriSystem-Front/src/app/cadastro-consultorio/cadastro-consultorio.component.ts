@@ -5,7 +5,6 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { ConsultorioService } from './consultorio.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { NutricionistaService } from '../cadastro-nutricionista/nutricionista.service';
 import { Nutricionista } from '../model/nutricionista.model';
 
@@ -23,9 +22,6 @@ export class CadastroConsultorioComponent implements OnInit {
   filterFormConsultorio: FormGroup;
   consultorioList: Consultorio[];
   nutricionistaList: Nutricionista[];
-  displayedColumns: string[] = [
-    'nomeFantasia', 'razaoSocial', 'cnpj', 'endereco', 'numero', 'bairro', 'cep', 'cidade', 'uf', 'pais', 'email',
-    'telefone', 'celular', 'whatsapp', 'instagram', 'facebook', 'horaAbertura', 'horaFechamento', 'action'];
   dataSource = new MatTableDataSource<Consultorio>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -33,14 +29,14 @@ export class CadastroConsultorioComponent implements OnInit {
 
   router: Router;
   constructor(private readonly _formBuilder: FormBuilder,
-     private readonly _nutricionistaService: NutricionistaService,
+              private readonly _nutricionistaService: NutricionistaService,
               private readonly _consultorioService: ConsultorioService,
                private readonly toastr: ToastrService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.MatPaginator;
     this.formsRegister = this._formBuilder.group({
-      id: [''],
+      idConsultorio: [''],
       nomeFantasia: [''],
       razaoSocial: [''],
       cnpj: [''],
@@ -65,7 +61,6 @@ export class CadastroConsultorioComponent implements OnInit {
     this._nutricionistaService.getAllNutricionista()
         .subscribe((nutricionistas: Nutricionista[]) => {
           this.nutricionistaList = (!!nutricionistas) ? nutricionistas : [];
-          //this.dataSourcePaciente.data = [...this.pacienteList];
       });
 
     this.filterFormConsultorio = this._formBuilder.group({
@@ -78,8 +73,9 @@ export class CadastroConsultorioComponent implements OnInit {
 
   }
   saveConsultorio() {
+    debugger;
     const consultorio: Consultorio = {
-      id: this.formsRegister.value.id,
+      idConsultorio: this.formsRegister.value.id,
       nomeFantasia: this.formsRegister.get('nomeFantasia').value,
       razaoSocial: this.formsRegister.get('razaoSocial').value,
       cnpj: this.formsRegister.get('cnpj').value,
@@ -102,11 +98,14 @@ export class CadastroConsultorioComponent implements OnInit {
     };
 
     this._consultorioService.saveConsultorio(consultorio)
-      .subscribe(() => {
-        this.formsRegister.reset();
+    .subscribe(consultorioSave => {
+      this.consultorio = (!!consultorioSave) ? consultorioSave : [];
+      this.dataSource.data = consultorioSave;
+      this.consultorioList = this.dataSource.data;
+      this.formsRegister.reset();
+      this.toastr.success('Consultorio salvo com sucesso!', 'Salvar');
       });
-    this.toastr.success('Consultorio salvo com sucesso!', 'Salvar');
-    this.router.navigate(['/', 'home']);
+    //this.router.navigate(['/', 'home']);
   }
 
   clearConsultorio(): void {

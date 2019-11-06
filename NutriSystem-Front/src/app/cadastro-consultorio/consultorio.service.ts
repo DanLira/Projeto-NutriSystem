@@ -21,18 +21,24 @@ export class ConsultorioService {
         return this._HTTP.get(this.apiUrl + '/Consultorio/?id=' + idConsultorio);
     }
     saveConsultorio(consultorio: Consultorio) {
+        let responseSave;
         $.ajax({
             type: 'POST',
             url: this.apiUrl + '/Consultorio/Create',
             content: 'application/json; charset=utf-8',
             dataType: 'json',
             data: consultorio,
-            error() {
+            async: false,
+            success(response) {
+                responseSave =  response;
+            },
+            error(textStatus) {
+                responseSave = textStatus;
             }
         });
 
 
-        return this._HTTP.post(this.apiUrl + '/Consultorio/Create', consultorio);
+        return responseSave;
     }
     editConsultorio(consultorio: Consultorio): Observable<any> {
        let  responseUpdate;

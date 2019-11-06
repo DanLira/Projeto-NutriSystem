@@ -65,11 +65,11 @@ namespace NutriSystem.Repositorio
                             ,
                             consulta.StatusConsulta
                             ,
-                            consulta.PacienteId
+                            consulta.idPaciente
                             ,
-                            consulta.NutricionistaId
+                            consulta.idNutricionista
                             ,
-                            consulta.ConsultorioId
+                            consulta.idConsultorio
 
                         }, tran); ;
 
@@ -87,7 +87,7 @@ namespace NutriSystem.Repositorio
 
         public bool DeleteConsulta(int consultaId)
         {
-            var queryConsulta = @"DELETE FROM [consulta] WHERE idConsulta = @ConsultaId";
+            var queryConsulta = @"DELETE FROM [consulta] WHERE idConsulta = @idConsulta";
 
             using (var cn = Connection)
             {
@@ -96,7 +96,7 @@ namespace NutriSystem.Repositorio
                 {
                     try
                     {
-                        cn.Query(queryConsulta, new { ConsultaId = consultaId }, tran);
+                        cn.Query(queryConsulta, new { idConsulta = consultaId }, tran);
 
                         tran.Commit();
                     }
@@ -115,7 +115,7 @@ namespace NutriSystem.Repositorio
                 {
                     cn.Open();
                 }
-                int resultado = cn.Execute(@"DELETE FROM [consulta] WHERE idConsulta = @ConsultaId", new { ConsultaId = consultaId });
+                int resultado = cn.Execute(@"DELETE FROM [consulta] WHERE idConsulta = @idConsulta", new { idConsulta = consultaId });
                 return resultado != 0;
             }
         }
@@ -130,9 +130,31 @@ namespace NutriSystem.Repositorio
                 }
 
                 int resultado = cn.Execute("UPDATE [consulta] SET [dataConsulta] = @DataConsulta ,[horaConsulta] = @HoraConsulta," +
-                    " [statusConsulta] = @StatusConsulta, [idPaciente] = @PacienteId, " +
-                    "[idNutricionista] = @NutricionistaId, [idConsultorio] = @ConsultorioId WHERE idConsulta = " + consulta.ConsultaId, consulta); ;
+                    " [statusConsulta] = @StatusConsulta, [idPaciente] = @idPaciente, " +
+                    "[idNutricionista] = @idNutricionista, [idConsultorio] = @idConsultorio WHERE idConsulta = " + consulta.idConsulta, consulta); ;
                 return resultado != 0;
+            }
+        }
+
+        public List<Nutricionista> ListarNutricionistas()
+        {
+            string queryNutriconista = @"select n.nome from consultorio as c inner join nutricionista as n on n.idNutricionista = c.idNutricionista";
+
+            try
+            {
+                using (var cn = Connection)
+                {
+                    cn.Open();
+
+                    List<Nutricionista> nutricionistas = cn.Query<Nutricionista>(queryNutriconista).ToList();
+
+                    return nutricionistas;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

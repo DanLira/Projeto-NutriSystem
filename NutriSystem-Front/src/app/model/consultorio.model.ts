@@ -1,7 +1,7 @@
 
 export interface Consultorio {
 
-    id: number;
+    idConsultorio: number;
     nomeFantasia: string;
     razaoSocial: string;
     cnpj: string;

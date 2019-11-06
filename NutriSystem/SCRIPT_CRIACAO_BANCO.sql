@@ -58,12 +58,8 @@ create table consultorio(
 	facebook varchar(50), 
 	whatsapp varchar(50),
     horaAbertura Varchar(5),
-	horaFechamento Varchar(5)
-)
-
-create table nutricionistaConsultorio(
-	idNutricionista int foreign key references nutricionista(idNutricionista) not null,
-	idConsultorio int foreign key references consultorio(idConsultorio) not null
+	horaFechamento Varchar(5),
+	idNutricionista int foreign key references nutricionista(idNutricionista) not null
 )
 
 create table consulta(

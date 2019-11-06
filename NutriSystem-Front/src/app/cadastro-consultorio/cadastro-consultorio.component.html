@@ -82,7 +82,7 @@
                             <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
                                     <mat-select required formControlName="idNutricionista" value={{formsRegister.value.NutricionistaId}}>
                                       <mat-option>Selecione</mat-option>
-                                      <mat-option [value]="item.NutricionistaId" *ngFor="let item of nutricionistaList">{{ item.Nome }}
+                                      <mat-option [value]="item.idNutricionista" *ngFor="let item of nutricionistaList">{{ item.Nome }}
                                       </mat-option>
                                     </mat-select>
                                     <mat-label>Selecione o Nutricionista</mat-label>

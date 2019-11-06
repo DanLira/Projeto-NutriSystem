@@ -7,7 +7,7 @@ namespace NutriSystem.Models
 {
     public class Nutricionista
     {
-        public int NutricionistaId { get; set; }
+        public int idNutricionista { get; set; }
         public string Nome { get; set; }
         public string Crn { get; set; }
         public string Email { get; set; }

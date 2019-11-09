@@ -8,7 +8,7 @@
               </mat-card-title>
               <form [formGroup]="formsRegister" class="row">
                   <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                      <mat-select required formControlName="idConsultorio" value={{formsRegister.value.idConsultorio}} (change)="getNutricionistas()">
+                      <mat-select required formControlName="idConsultorio" value={{formsRegister.value.idConsultorio}} >
                         <mat-option>Selecione</mat-option>
                         <mat-option [value]="item.idConsultorio" *ngFor="let item of consultorioList">{{ item.NomeFantasia }}
                         </mat-option>
@@ -24,9 +24,9 @@
                         <mat-label>Selecione o Nutricionista</mat-label>
                       </mat-form-field>
                       <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                          <mat-select required formControlName="pacienteId" value={{formsRegister.value.PacienteId}}>
+                          <mat-select required formControlName="idPaciente" value={{formsRegister.value.idPaciente}}>
                             <mat-option>Selecione</mat-option>
-                            <mat-option [value]="item.Nome" *ngFor="let item of pacienteList">{{ item.Nome }}
+                            <mat-option [value]="item.idPaciente" *ngFor="let item of pacienteList">{{ item.Nome }}
                             </mat-option>
                           </mat-select>
                           <mat-label>Selecione o Paciente</mat-label>
@@ -66,10 +66,10 @@
           </div>
           <div class="row">
               <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
-                  <button mat-raised-button class="btn col-12" (click)="clearPaciente()">Limpar</button>
+                  <button mat-raised-button class="btn col-12" (click)="clearConsulta()">Limpar</button>
                 </div>
             <div class="col-sm-12 col-md-1  mt-4">
-              <button mat-raised-button class="btn col-12"  (click)="agendarConsulta()">Agendar Consulta</button>
+              <button mat-raised-button class="btn col-12"  (click)="agendarConsulta()">Salvar</button>
             </div>
           </div>
         </mat-card>
@@ -87,7 +87,7 @@
                 <form [formGroup]="filterFormConsulta" class="row">
                     <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
                         <mat-label>Horário da Consulta</mat-label>
-                    <input matInput placeholder="horaConsulta" formControlName="horaConsultaFilterCtrl">
+                    <input matInput placeholder="hora da Consulta" formControlName="horaConsultaFilterCtrl">
                   </mat-form-field>
                   <mat-form-field class="col-4" appearance="outline">
                     <input matInput readonly [matDatepicker]="picker2" placeholder="Data da Consulta"

@@ -20,5 +20,6 @@ namespace NutriSystem.Models
         public bool AtdNutConsultoria { get; set; }
         public bool AtdNutEsportiva { get; set; }
         public bool AtdNutGastronomia { get; set; }
+        public string Senha { get; set; }
     }
 }

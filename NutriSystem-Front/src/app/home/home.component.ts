@@ -10,7 +10,9 @@ import { AuthService } from '../guards/auth.service';
 export class HomeComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
-
+  opened: boolean;
+  events: string[] = [];
+  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
   constructor(private authService: AuthService) { }
 
   ngOnInit() {

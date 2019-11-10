@@ -33,7 +33,7 @@ create table nutricionista(
 create table usuario(
 	idUsuario int identity(1,1) primary key not null, 
 	loginUsuario varchar(30) not null,
-	senha char(8) not null,
+	senha varchar(50) not null,
 	tipo varchar(20) not null,
 	idPaciente int foreign key references paciente(idPaciente),
 	idNutricionista int foreign key references nutricionista(idNutricionista)

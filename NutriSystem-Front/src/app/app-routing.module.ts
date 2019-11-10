@@ -12,7 +12,7 @@ import { MarcarConsultaComponent } from './marcar-consulta/marcar-consulta.compo
 const routes: Routes = [
 
     {
-        path: '',
+        path: 'home',
         component: HomeComponent, canActivate: [AuthGuard]
     },
 

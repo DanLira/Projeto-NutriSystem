@@ -28,11 +28,21 @@ namespace NutriSystem.Repositorio
             }
         }
 
+
         public void SalvarNutricionista(Nutricionista nutricionista)
         {
             var queryNutricionista = @"INSERT INTO [nutricionista]
                                      ([nome], [crn], [sexo], [email])
-                                     VALUES (@Nome, @Crn, @Sexo, @Email)";
+                                     VALUES (@Nome, @Crn, @Sexo, @Email) select @@identity";
+
+            var queryUsuarioInsert = @"INSERT INTO [usuario]
+                                     ([loginUsuario], [senha], [tipo], [idNutricionista])
+                                     VALUES (@Login, @Senha, @Tipo, @NutricionistaId)";
+
+            int idNutricionistaSaved;
+            nutricionista.Senha = "12345678910";
+            Usuario usuario = new Usuario();
+
             using (var cn = Connection)
             {
                 cn.Open();
@@ -47,13 +57,41 @@ namespace NutriSystem.Repositorio
                             nutricionista.Sexo,
                             nutricionista.Email
                         }, tran);
-                        tran.Commit();
+
+                        //idNutricionistaSaved = (int)tran.Id
+                        //idNutricionistaSaved = O ID DO NUTRICIONISTA QUE ESTÁ SENDO SALVO AQUI
+                        //int retorno = Convert.ToInt32(tran.Parameters["@id"].Value);
+
                     }
                     catch (Exception)
                     {
                         tran.Rollback();
                         throw;
                     }
+
+                    usuario.Login = nutricionista.Crn;
+                    usuario.Senha = nutricionista.Senha;
+                    usuario.Tipo = "Nutricionista";
+                    usuario.NutricionistaId = 3;               
+                               
+                    try
+                    {
+                        cn.Query(queryUsuarioInsert, new
+                        {
+                           usuario.Login,
+                           usuario.Senha,
+                           usuario.Tipo,
+                           usuario.NutricionistaId
+                        }, tran);
+                        tran.Commit();
+                    }
+                    catch(Exception e)
+                    {
+                        var message = e.Message;
+                        tran.Rollback();
+                        throw;
+                    }
+
                 }
             }
         }

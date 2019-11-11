@@ -16,7 +16,6 @@ import { HttpClient } from '@angular/common/http';
 export class CadastroNutricionistaComponent implements OnInit {
 
   nutricionista: Nutricionista[];
-
   formsRegister: FormGroup;
   filterFormNutricionista: FormGroup;
   nutricionistaList: Nutricionista[];
@@ -30,7 +29,6 @@ export class CadastroNutricionistaComponent implements OnInit {
     private readonly _nutricionistaService: NutricionistaService, private readonly toastr: ToastrService) {
       this.router = router;
      }
-
   ngOnInit() {
     this.dataSource.paginator = this.MatPaginator;
     this.formsRegister = this._formBuilder.group({
@@ -38,8 +36,17 @@ export class CadastroNutricionistaComponent implements OnInit {
       nome: [''],
       crn: [''],
       sexo: [''],
-      email: ['']
-
+      email: [''],
+      senha: [''],
+      confirmarSenha: [''], 
+      nutPediatrica: [''],
+      nutClinica: [''],
+      nutHospitalar: [''],
+      nutAmbulatorial: [''],
+      nutDomiciliar: [''],
+      nutConsultoria: [''],
+      nutEsportiva: [''],
+      nutGastronomica: ['']
     });
 
     this.filterFormNutricionista = this._formBuilder.group({
@@ -55,7 +62,17 @@ export class CadastroNutricionistaComponent implements OnInit {
       nome: this.formsRegister.get('nome').value,
       email: this.formsRegister.get('email').value,
       sexo: this.formsRegister.get('sexo').value,
-      crn: this.formsRegister.get('crn').value
+      crn: this.formsRegister.get('crn').value,
+      senha: this.formsRegister.get('senha').value,
+      confirmarSenha: this.formsRegister.get('confimarSenha').value,
+      nutPediatrica: this.formsRegister.get('nutPediatrica').value,
+      nutClinica: this.formsRegister.get('nutClinica').value,
+      nutHospitalar: this.formsRegister.get('nutHospitalar').value,
+      nutAmbulatorial: this.formsRegister.get('nutAmbulatorial').value,
+      nutDomiciliar: this.formsRegister.get('nutDomiciliar').value,
+      nutConsultoria: this.formsRegister.get('nutConsultoria').value,
+      nutEsportiva: this.formsRegister.get(' nutEsportiva').value,
+      nutGastronomica: this.formsRegister.get(' nutGastronomica').value
     };
 
     this._nutricionistaService.saveNutricionista(nutricionista)

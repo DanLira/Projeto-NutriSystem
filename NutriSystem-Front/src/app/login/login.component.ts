@@ -10,14 +10,14 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  
-    loginForm: FormGroup;                    // {1}
+
+  loginForm: FormGroup;                    // {1}
   private formSubmitAttempt: boolean; // {2}
 
   constructor(
     private fb: FormBuilder,         // {3}
     private authService: AuthService // {4}
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({     // {5}

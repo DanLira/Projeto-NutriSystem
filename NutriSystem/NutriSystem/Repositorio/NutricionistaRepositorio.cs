@@ -3,6 +3,7 @@ using NutriSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -33,11 +34,31 @@ namespace NutriSystem.Repositorio
         {
             var queryNutricionista = @"INSERT INTO [nutricionista]
                                      ([nome], [crn], [sexo], [email])
-                                     VALUES (@Nome, @Crn, @Sexo, @Email) select @@identity";
+                                     VALUES (@Nome, @Crn, @Sexo, @Email) OUTPUT INSERTED.ID";
 
             var queryUsuarioInsert = @"INSERT INTO [usuario]
                                      ([loginUsuario], [senha], [tipo], [idNutricionista])
                                      VALUES (@Login, @Senha, @Tipo, @NutricionistaId)";
+
+        //    using (SqlConnection con = new SqlConnection(Config.ConnectionString))
+        //    {
+
+        //        using (SqlCommand cmd = new SqlCommand(queryNutricionista, con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@na", Mem_NA);
+        //            cmd.Parameters.AddWithValue("@occ", Mem_Occ);
+        //            con.Open();
+
+        //            int modified = (int)cmd.ExecuteScalar();
+
+        //            if (con.State == System.Data.ConnectionState.Open)
+        //                con.Close();
+
+        //            return modified;
+        //        }
+        //    }
+
+        //}
 
             int idNutricionistaSaved;
             nutricionista.Senha = "12345678910";
@@ -69,10 +90,10 @@ namespace NutriSystem.Repositorio
                         throw;
                     }
 
-                    usuario.Login = nutricionista.Crn;
-                    usuario.Senha = nutricionista.Senha;
-                    usuario.Tipo = "Nutricionista";
-                    usuario.NutricionistaId = 3;               
+                        usuario.Login = nutricionista.Crn;
+                        usuario.Senha = nutricionista.Senha;
+                        usuario.Tipo = "Nutricionista";
+                        usuario.NutricionistaId = 3;               
                                
                     try
                     {

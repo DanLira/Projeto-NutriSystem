@@ -6,7 +6,7 @@
                     <div class="col-12">
                         <mat-card-title>Cadastro de Nutricionista </mat-card-title>
                         <form [formGroup]="formsRegister" class="row">
-                            <mat-form-field class="col-5" appearance="outline">
+                            <mat-form-field class="col-4" appearance="outline">
                                 <mat-label>Nome</mat-label>
                                 <input matInput placeholder="Nome" required formControlName="nome"
                                     value={{formsRegister.value.Nome}}>
@@ -21,7 +21,7 @@
                                 </select>
                             </mat-form-field>
 
-                            <mat-form-field class="col-4" appearance="outline">
+                            <mat-form-field class="col-2" appearance="outline">
                                 <mat-label>CRN</mat-label>
                                 <input matInput placeholder="CRN" required formControlName="crn">
                             </mat-form-field>
@@ -36,33 +36,55 @@
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-12">
-                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutPediatrica">Nutrição
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutPediatrica" formControlName="nutPediatrica">Nutrição
                                             Pediatrica
                                         </mat-checkbox>
-                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutClinica">Nutrição
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutClinica"  formControlName="nutClinica">Nutrição
                                             Clínica
                                         </mat-checkbox>
-                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutHospitalar">Nutrição
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutHospitalar"  formControlName="nutHospitalar">Nutrição
                                             Hospitalar
                                         </mat-checkbox>
-                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutAmbulatorial">
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutAmbulatorial"  formControlName="nutAmbulatorial">
                                             Nutrição
                                             Ambulatorial
                                         </mat-checkbox>
-                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutDomiciliar">Nutrição
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutDomiciliar"  formControlName="nutDomiciliar">Nutrição
                                             Domiciliar
                                         </mat-checkbox>
-                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutConsultoria">Nutrição
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutConsultoria"  formControlName="nutConsultoria">Nutrição
                                             Consultoria
                                         </mat-checkbox>
-                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutEsportiva">Nutrição
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutEsportiva"  formControlName="nutEsportiva">Nutrição
                                             Esportiva</mat-checkbox>
-                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutGastronomica">
+                                        <mat-checkbox class="col-xs-12 col-md-2" id="chkNutGastronomica"  formControlName="nutGastronomica">
                                             Nutrição Gastronômica
                                         </mat-checkbox>
                                     </div>
                                 </div>
                             </div>
+
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>Login</mat-label>
+                                <input matInput placeholder="Login" formControlName="crn">
+                            </mat-form-field>
+                            <mat-form-field class="col-xs-12 col-md-3" appearance="outline">
+                                <input matInput placeholder="Senha" required formControlName="senha"
+                                    [type]="hide ? 'text' : 'password'">
+                                <button mat-icon-button matSuffix (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+                            <mat-form-field class="col-xs-12 col-md-3" appearance="outline">
+                                <input matInput placeholder="Confirme a Senha" required formControlName="confirmarSenha"
+                                    [type]="hide ? 'text' : 'password'">
+                                <button mat-icon-button matSuffix (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+
                         </form>
                     </div>
                 </div>
@@ -74,7 +96,7 @@
                         <button mat-raised-button class="btn col-12" (click)="saveNutricionista()">Salvar</button>
                     </div>
                 </div>
-            </mat-card>    
+            </mat-card>
         </div>
     </div>
 </section>
